@@ -20,8 +20,10 @@ module.exports = class {
     
     const settings = await Settings.findOne({ guildID: oldMessage.guild.id });
 
-    if (newMessage.guild && this.client.permlevel(newMessage) < 2) {
-      if (newMessage.member && !settings.ignoredUsers.includes(newMessage.author.id)) {
+    if(newMessage.member)
+    {
+    if (!newMessage.member.hasPermission("MANAGE_MESSAGES") && !newMessage.member.hasPermission("MANAGE_GUILD") && !newMessage.member.hasPermission("ADMINISTRATOR") && !newMessage.member.roles.cache.has(settings.modRole)) {
+      if (!settings.ignoredUsers.includes(newMessage.author.id)) {
         if (!settings.ignoredChannels.includes(newMessage.channel.id)) {
           if (!newMessage.member.roles.cache.some(r=>settings.ignoredRoles.includes(r.id))) {
             automod.run(this.client, newMessage, settings);
@@ -29,6 +31,7 @@ module.exports = class {
         }
       }
     }
+  }
     const tc = this.client.channels.cache.get(settings.messageLog);
     if(!tc || tc.id === newMessage.channel.id)
     return;
