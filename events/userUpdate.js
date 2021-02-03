@@ -30,7 +30,7 @@ module.exports = class {
           if(oldUser.bot) 
           return;
           const member = g.members.cache.get(oldUser.id);
-          if(member.displayName && settings.hoistCharacters.includes(member.displayName.substr(0,1)))
+          if(member && settings.hoistCharacters.includes(member.displayName.substr(0,1)))
           OtherUtil.dehoist(member, member.displayName.substr(0,1));
        const tc = g.channels.cache.get(settings.serverLog);
        if(!tc)
