@@ -73,7 +73,7 @@ class RoleinfoCmd extends Command {
 
         var str = `${linestart} ID: **${role.id}**`;
 
-        str+=`\n${linestart} Creation: **${role.createdAt.toUTCString()()}**`;
+        str+=`\n${linestart} Creation: **${role.createdAt.toUTCString()}**`;
 
         str+=`\n${linestart} Position: **${role.position}**`;
 
