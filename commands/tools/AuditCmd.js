@@ -39,11 +39,11 @@ class AuditCmd extends Command {
         function format(entry) {
 
             if (entry.actionType == "DELETE") {
-                return `\tTimestamp: ${entry.createdAt.toUTCString()()}\n\tAction: ${entry.action}`
+                return `\tTimestamp: ${entry.createdAt.toUTCString()}\n\tAction: ${entry.action}`
                     + `\n\tExecutor: **${entry.executor.username}**#${entry.executor.discriminator}`;
             }
             else {
-                return `\tTimestamp: ${entry.createdAt.toUTCString()()}\n\tAction: ${entry.action}`
+                return `\tTimestamp: ${entry.createdAt.toUTCString()}\n\tAction: ${entry.action}`
                     + `\n\tExecutor: **${entry.executor.username}**#${entry.executor.discriminator}\n\tChanges: ${JSON.stringify(entry.changes)}`;
             }
         }

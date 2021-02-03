@@ -46,6 +46,6 @@ module.exports = class {
   const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
     tc.send(`\`[${date}]\`
 ${JOIN} ${FormatUtil.formatFullUser(member.user)} joined the server.
-${LINESTART} Account Creation: **${member.user.createdAt.toUTCString()()}** (${FormatUtil.msToTimeCompact(Date.now() - member.user.createdTimestamp)} ago)`, { disableMentions: 'all' }).catch(()=>{});
+${LINESTART} Account Creation: **${member.user.createdAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now() - member.user.createdTimestamp)} ago)`, { disableMentions: 'all' }).catch(()=>{});
 }
 }

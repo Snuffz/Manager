@@ -26,7 +26,7 @@ const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
 ${LINESTART} ID: **${guild.id}**
 ${LINESTART} Owner: ${FormatUtil.formatFullUser(guild.owner.user)}
 ${LINESTART} Numbers of Members: **${guild.memberCount}**
-${LINESTART} Create At: **${guild.createdAt.toUTCString()()}** (${FormatUtil.msToTimeCompact(Date.now()-guild.createdTimestamp)} ago)
+${LINESTART} Create At: **${guild.createdAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now()-guild.createdTimestamp)} ago)
 
 ${LINESTART} Number of Servers Currently: **${this.client.guilds.cache.size}**
       `)
