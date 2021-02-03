@@ -75,7 +75,6 @@ module.exports = class {
     if (message.content.indexOf(guildSettings.prefix) !== 0) return;
     const args = message.content.slice(guildSettings.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    if (message.guild && !message.member) await message.guild.fetchMember(message.author);
     const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
     if (!cmd) return;
     if (message.author.id !== this.client.config.OWNER_ID && this.client.cmdMaintenance === true) return;
