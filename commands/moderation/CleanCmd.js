@@ -93,7 +93,7 @@ async function lots_of_messages_getter(channel, limit, client) {
     
     var idIndex = 0
             var idFilterInput = ''
-            args.filter(a => a.match(new RegExp("[0-9]{17,18}"))).forEach(async arg => {      
+            args.filter(a => a.match(new RegExp("[0-9]{17,18}"))).forEach(arg => {      
                         if (idIndex == 0) {
                             idFilterInput += `msg.author.id == ${arg}`;
                             params = params + `${arg} `
