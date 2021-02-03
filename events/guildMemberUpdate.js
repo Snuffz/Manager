@@ -30,20 +30,27 @@ tc.send(`\`[${date}]\`
 ${NICKNAME} ${oldMember.displayName} (${newMember.id}) has changed nicknames to ${newMember.displayName}`, { disableMentions: "all" }).catch(() => {});
   }
   const tc = this.client.channels.cache.get(settings.modLogsChannel);
+  if(oldMember.guild.me.permissions.has("VIEW_AUDIT_LOG"))
+  {
   const entry = await oldMember.guild.fetchAuditLogs({
     type: 'MEMBER_ROLE_UPDATE'
   }).then(audit => audit.entries.first());
-   const { executor, reason } = entry;
+   const { executor } = entry;
    if(executor.id === this.client.user.id)
    return;
+}
   if (oldMember.roles.cache.size !== newMember.roles.cache.size) 
   {
      if(newMember.roles.cache.size > oldMember.roles.cache.size)
      {
-      if(newMember.roles.cache.map(a => a.id).filter(a => !oldMember.roles.cache.map(a => a.id).includes(a))[0] == settings.muteRole || newMember.guild.roles.cache.some(r => r.name.toLowerCase() === "muted") && newMember.roles.cache.map(a => a.id).filter(a => !oldMember.roles.cache.map(a => a.id).includes(a))[0] === newMember.guild.roles.cache.find(r => r.name.toLowerCase() === "muted").id)
+      if(oldMember.guild.me.permissions.has("VIEW_AUDIT_LOG") && newMember.roles.cache.map(a => a.id).filter(a => !oldMember.roles.cache.map(a => a.id).includes(a))[0] == settings.muteRole || newMember.guild.roles.cache.some(r => r.name.toLowerCase() === "muted") && newMember.roles.cache.map(a => a.id).filter(a => !oldMember.roles.cache.map(a => a.id).includes(a))[0] === newMember.guild.roles.cache.find(r => r.name.toLowerCase() === "muted").id)
       {  
         if(!tc)
         return;
+        const entry = await oldMember.guild.fetchAuditLogs({
+          type: 'MEMBER_ROLE_UPDATE'
+        }).then(audit => audit.entries.first());
+         const { executor, reason } = entry;
           const Logger = new logHandler({ client: this.client, case: "muteAdd", guild: oldMember.guild.id, member: oldMember.user, moderator: executor, reason: reason || '[no reason specified]' });
           Logger.send().then(() => Logger.kill());
       } else {
@@ -56,11 +63,15 @@ ${ROLE} ${FormatUtil.formatFullUser(newMember.user)} had an added role \`${newRo
       }
     }else if(newMember.roles.cache.size < oldMember.roles.cache.size)
     {
-     if(oldMember.roles.cache.map(a => a.id).filter(a => !newMember.roles.cache.map(a => a.id).includes(a))[0] == settings.muteRole || oldMember.guild.roles.cache.some(r => r.name.toLowerCase() === "muted") && oldMember.roles.cache.map(a => a.id).filter(a => !newMember.roles.cache.map(a => a.id).includes(a))[0] === oldMember.guild.roles.cache.find(r => r.name.toLowerCase() === "muted").id)
+     if(oldMember.guild.me.permissions.has("VIEW_AUDIT_LOG") && oldMember.roles.cache.map(a => a.id).filter(a => !newMember.roles.cache.map(a => a.id).includes(a))[0] == settings.muteRole || oldMember.guild.roles.cache.some(r => r.name.toLowerCase() === "muted") && oldMember.roles.cache.map(a => a.id).filter(a => !newMember.roles.cache.map(a => a.id).includes(a))[0] === oldMember.guild.roles.cache.find(r => r.name.toLowerCase() === "muted").id)
      {
       TempMuteManager.removeMute(newMember.guild, newMember.id);
       if(!tc)
       return;
+      const entry = await oldMember.guild.fetchAuditLogs({
+        type: 'MEMBER_ROLE_UPDATE'
+      }).then(audit => audit.entries.first());
+       const { executor, reason } = entry;
         const Logger = new logHandler({ client: this.client, case: "muteRemove", guild: oldMember.guild.id, member: oldMember.user, moderator: executor, reason: reason || '[no reason specified]' });
         Logger.send().then(() => Logger.kill());
 } else
