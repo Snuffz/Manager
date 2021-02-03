@@ -74,7 +74,7 @@ class UserinfoCmd extends Command {
         break;
     }
 
-    str+=`\n${linestart} Account Creation: **${member.user.createdAt.toGMTString()}**\n${linestart} Guild Join Date: **${member.joinedAt.toGMTString()}** \`(#${(index + 1)})\``;
+    str+=`\n${linestart} Account Creation: **${member.user.createdAt.toUTCString()()}**\n${linestart} Guild Join Date: **${member.joinedAt.toUTCString()()}** \`(#${(index + 1)})\``;
 
     str+=`\n${linestart} Join Order: ${joinOrder}`;
 
