@@ -49,7 +49,7 @@ var str = new String(`${LINESTART} Discord ID: **${u.id}** `);
 str+=OtherUtil.getEmoji(u.flags);
 if(u.avatar != null && u.avatar.startsWith("a_"))
             str+="<:nitro:688880424205680644>";
-str+=`\n${LINESTART} Account Creation: **${u.createdAt.toGMTString()}**`;
+str+=`\n${LINESTART} Account Creation: **${u.createdAt.toUTCString()()}**`;
 eb.setDescription(str.toString());
 message.channel.send({ content: text, embed: eb, disableMentions: "all" });
 return true;
@@ -104,7 +104,7 @@ function constructMessage(invite, client)
   const eb = new MessageEmbed();
   eb.setThumbnail(g.iconURL({format:'png', dynamic: true}));
   eb.setDescription(`${LINESTART} ID: **${g.id}**
-${LINESTART} Creation: **${g.createdAt.toGMTString()}**
+${LINESTART} Creation: **${g.createdAt.toUTCString()()}**
 ${LINESTART} Members: **${g.memberCount}**`)
 eb.setImage(g.splashURL() == null ? null : g.splashURL({ format: 'png', size: 1024, dynamic: true }));
 eb.addField("Information About Invite", `${LINESTART} Invite: **${invite.code}**

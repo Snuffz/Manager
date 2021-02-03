@@ -44,7 +44,7 @@ class ServerinfoCmd extends Command {
 
    str+=`\n${linestart} Location: **${region[message.guild.region]}**`;
 
-   str+=`\n${linestart} Creation: **${message.guild.createdAt.toGMTString()}**`;
+   str+=`\n${linestart} Creation: **${message.guild.createdAt.toUTCString()()}**`;
 
    str+=`\n${linestart} Boost Level: **${message.guild.premiumSubscriptionCount}**`;
 
