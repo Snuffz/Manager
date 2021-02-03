@@ -1,13 +1,13 @@
 {
   "name": "testing",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "👮‍♂️ Discord moderation bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "https://github.com/Snuffz/",
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.6.1",
