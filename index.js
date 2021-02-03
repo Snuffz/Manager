@@ -236,7 +236,7 @@ class Bot extends Client {
 
 const client = new Bot({
   fetchAllMembers: true,
-   partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER', 'REACTION', 'USER']
+   partials: ['MESSAGE', 'CHANNEL', 'GUILD_MEMBER', 'REACTION', 'USER', 'GUILD']
 });
 
 logs(client)
