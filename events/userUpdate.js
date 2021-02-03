@@ -30,7 +30,7 @@ module.exports = class {
           if(oldUser.bot) 
           return;
           const member = g.members.cache.get(oldUser.id);
-          if(settings.hoistCharacters.includes(member.displayName.substr(0,1)))
+          if(member.displayName && settings.hoistCharacters.includes(member.displayName.substr(0,1)))
           OtherUtil.dehoist(member, member.displayName.substr(0,1));
        const tc = g.channels.cache.get(settings.serverLog);
        if(!tc)
@@ -61,7 +61,7 @@ ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${For
 
       tc.send({ files: [attachment], 
         content: `\`[${date}]\`
-${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars ${newUser.avatar.startsWith("a_") ? "GIF" : ""}:`,
+${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars ${newUser.avatar.startsWith("a_") ? "<:gif:806644461781647382>" : ""}:`,
  disableMentions: "all" }).catch(()=>{})
 
            
