@@ -27,7 +27,6 @@ class IgnoredrolesCmd extends Command {
       if(!args[1])
       return reply(`${this.client.config.emojis.error} Provide the role name.`);
       const option = args[0].toLowerCase();
-
       let role;
       const roles = FinderUtil.findRoles(args.slice(1).join(" "), message.guild);
       if(roles.size == 0)
