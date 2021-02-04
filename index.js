@@ -96,7 +96,6 @@ class Bot extends Client {
         maxMentionsRoles: 0,
         firstAutomod: true,
         redirectLinks: "off",
-        voicemove: false,
         hoistCharacters: [],
         filterWords: [],
         tempmutes: [],
@@ -145,7 +144,6 @@ class Bot extends Client {
             maxMentionsRoles: obj.maxMentionsRoles,
             firstAutomod: obj.firstAutomod,
             redirectLinks: obj.redirectLinks,
-            voicemove: obj.voicemove,
             hoistCharacters: obj.hoistCharacters,
             filterWords: obj.filterWords,
             tempmutes: obj.tempmutes,
@@ -179,7 +177,6 @@ class Bot extends Client {
           settingsKit.maxMentionsRoles = obj.maxMentionsRoles;
           settingsKit.firstAutomod = obj.firstAutomod;
           settingsKit.redirectLinks = obj.redirectLinks;
-          settingsKit.voicemove = obj.voicemove;
           settingsKit.hoistCharacters = obj.hoistCharacters;
           settingsKit.filterWords = obj.filterWords;
           settingsKit.tempmutes = obj.tempmutes;
