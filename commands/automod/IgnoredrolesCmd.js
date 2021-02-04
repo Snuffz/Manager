@@ -36,8 +36,6 @@ class IgnoredrolesCmd extends Command {
             role = roles.first();
             else 
            return message.channel.send(this.client.config.emojis.warning+FormatUtil.listOfRoles(roles, args.slice(1).join(" ")), { disableMentions: "all" });
-           
-
       if (option === "add") {
         if(!settings.ignoredRoles.includes(role.id)){
           settings.ignoredRoles.push(role.id);
