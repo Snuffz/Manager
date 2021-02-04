@@ -1,18 +1,12 @@
-/*const express = require('express');
+const express = require('express');
 const app = express();
 app.get("/", (request, response) => {
   const ping = new Date();
   ping.setHours(ping.getHours() - 3);
-  console.log(`Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
+  console.log(`Ping received at ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
-let pings = 0;
-setInterval(() => {
-  pings++;
-  
-  require('node-fetch')('https://testing.gangexe.repl.co').then(() => console.log(`[${pings}] Pingado`));
-}, 60000);*/
 const { Client, Collection } = require("discord.js");
 
 const { promisify } = require("util");
