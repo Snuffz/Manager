@@ -40,7 +40,10 @@ module.exports.checkUnmutes = (client) =>
         const role = guild.roles.cache.get(guild.settings.muteRole) || member.guild.roles.cache.find(r => r.name.toLowerCase() === "muted");
         if(role){
             this.removeMute(guild, mutes.memberID);
-            guild.members.cache.get(mutes.memberID).roles.remove(role.id, "Temporary Mute Completed")
+            const m = guild.members.cache.get(mutes.memberID);
+            if(m)
+            {
+            m.roles.remove(role.id, "Temporary Mute Completed")
             .then((member) => {
                 if (guild.channels.cache.get(guild.settings.modLogsChannel)) {
                     const Logger = new logHandler({ client: client, case: "muteRemove", guild: guild.id, member: member, moderator: client.user, reason: "Temporary Mute Completed" });
@@ -49,6 +52,7 @@ module.exports.checkUnmutes = (client) =>
             })
             .catch(()=>{})
         }
+    }
         }, 1000)
         })
     })

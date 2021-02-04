@@ -16,7 +16,9 @@ module.exports = class {
       var count = 0; 
        members.forEach(async (u) => {
          count++;
-        await u.voice.setChannel(newChannel).catch(()=>{});
+         try {
+        await u.voice.setChannel(newChannel)
+         } catch(e) {};
      })
      var interval = setInterval(()=>{if(members.size==count){ newChannel.leave(); clearInterval(interval)}},100);         
     }
