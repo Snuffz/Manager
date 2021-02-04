@@ -83,9 +83,9 @@ module.exports = class {
     if (!message.guild && cmd.conf.guildOnly) return reply(`${this.client.config.emojis.error} This command cannot be used in Direct Messages.`)
 if(message.guild)
 {
-  if(!cmd.conf.botPermissions.every(e =>message.channel.permissionsFor(message.guild.me).has(e)))
+  if(!cmd.conf.botPermissions.every(e =>message.channel.permissionsFor(message.guild.me).has(e)) && !message.guild.me.hasPermission(cmd.conf.botPermissions))
   return reply(`${this.client.config.emojis.error} I need ${cmd.conf.botPermissions.map(perm => FormatUtil.formatPerms(perm)).join(", ")} permissions to use this.`);
-  else if(!cmd.conf.userPermissions.every(e =>message.channel.permissionsFor(message.member).has(e)))
+  else if(!cmd.conf.userPermissions.every(e =>message.channel.permissionsFor(message.member).has(e)) && !message.member.hasPermission(cmd.conf.userPermissions))
   {
     if(cmd.help.category !== "Moderation")
     {
