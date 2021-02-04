@@ -32,7 +32,6 @@ const settingSchema = mongoose.Schema({
   maxMentionsRoles: Number,
   firstAutomod: Boolean,
   redirectLinks: String,
-  voicemove: Boolean,
   hoistCharacters: Array,
   filterWords: Array,
   tempmutes: Array,

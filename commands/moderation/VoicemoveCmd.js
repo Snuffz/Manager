@@ -53,9 +53,7 @@ class VoicemoveCmd extends Command {
 try
 {
   vc.join()
-  .then(async () => {
-    settings.voicemove = true;
-    await settings.save().catch(e => this.client.logger.log(e, "error"));
+  .then(() => {
     reply("\ud83d\udd03 I entered the voice channel, move me to move all users connected to it.")
   });
 }
@@ -65,17 +63,26 @@ catch(e)
   return;
 }
 
-setTimeout(async () => {
-if(settings.voicemove === false) return;
+this.client.on("voiceStateUpdate", async (oldmem, newmem) => {
+  if (newmem.member.voice.channel && newmem.member.voice.channel.id !== vc.id) {
+const newchannel = message.guild.channels.cache.get(newmem.member.voice.channel.id);
+if(this.client.user.id === newmem.member.user.id){
+  vc.members.forEach(async e => {
+    await e.voice.setChannel(newchannel)
+  });
+  await newchannel.leave();
+}
+  }
+})
 
-settings.voicemove = false;
-await settings.save().catch(e => this.client.logger.log(e, "error"));
-
+setTimeout(() => {
+  if(message.guild.me.voice.channel)
+  {
 reply(`${this.client.config.emojis.warning} ${message.member} I was too long connected, time out!`)
 .then(() => message.guild.me.voice.channel.leave())
 .catch(()=>{});
+  }
 }, 120000);
-
   }
 };
 

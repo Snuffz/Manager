@@ -45,7 +45,6 @@ module.exports = class {
         maxMentionsRoles: 0,
         firstAutomod: true,
         redirectLinks: "off",
-        voicemove: false,
         hoistCharacters: [],
         filterWords: [],
         tempmutes: [],
