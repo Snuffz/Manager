@@ -47,7 +47,7 @@ strike: warns,
 category: name
   };
   if(FilterManager.addFilter(message.guild, j)){
-    message.channel.send({content: `${this.client.config.emojis.success} Filter *${name}* (\`${warns} ${this.client.config.emojis.strike}\`) successfully created with filtered terms:\n${words.join(" ").replace("*", "\\*").replace("`", "\\`")}`, disableMentions: "all"});
+    message.channel.send({content: `${this.client.config.emojis.success} Filter *${name}* (\`${warns} ${this.client.getEmoji("strike")}\`) successfully created with filtered terms:\n${words.join(" ").replace("*", "\\*").replace("`", "\\`")}`, disableMentions: "all"});
   }
   else 
   {

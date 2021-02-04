@@ -41,6 +41,7 @@ module.exports.getAllPunishmentsDisplay = (all) => {
     const PunishmentsDisplay = {
         mute: "**\uD83D\uDD07 Mute**", // 🔇
         ban: "**\uD83D\uDD28 Ban**", // 🔨
+        kick: "**\ud83d\udc62 Kick**", // 👢
         softban: "**\uD83C\uDF4C Softban**", // 🍌
         tempmute: "**\uD83E\uDD10 Tempmute**", // 🤐
         tempban: "**\u23F2 Tempban**" // ⏲
