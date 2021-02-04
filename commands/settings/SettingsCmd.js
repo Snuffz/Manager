@@ -26,7 +26,7 @@ embed: new MessageEmbed()
 .addField(`${this.client.getEmoji("strike")} Punishments`, PunishmentManager.getAllPunishmentsDisplay(message.guild.settings.punishments), true)
 .addField("\ud83d\udee1\ufe0f Automod:", AutomodManager.getSettingsDisplay(message.guild), true)
 .addField("\ud83d\udeb7 Filters", FilterManager.getFiltersDisplay(message.guild), true)
-.setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+.setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
 .setFooter((await PremiumManager.getFooterString(message.guild)))
 .setTimestamp((await PremiumManager.getTimestamp(message.guild))),
 disableMentions: "all"

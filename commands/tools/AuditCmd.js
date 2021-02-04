@@ -28,7 +28,7 @@ class AuditCmd extends Command {
         const entries = audit.entries.array();
         if(page > audit.entries.size) return reply(`${this.client.config.emojis.error} Invalid page number.`)
         const embed = new MessageEmbed()
-            .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+            .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
             .addField(`${linestart} Log #${startPos + 1}`, format(entries[startPos]))
             .addField(`${linestart} Log #${startPos + 2}`, format(entries[startPos + 1]))
             .addField(`${linestart} Log #${startPos + 3}`, format(entries[startPos + 2]))

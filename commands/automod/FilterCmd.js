@@ -73,7 +73,7 @@ category: name
   }
   reply("",new MessageEmbed()
   .addField(FILTER_TITLE, FilterManager.getFiltersDisplay(message.guild))
-  .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+  .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
 )
 }
   }

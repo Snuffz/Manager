@@ -92,7 +92,7 @@ return;
 ${muteRole?"":`${this.client.config.emojis.warning} The 'Muted' role does not exist.`}`,
    embed: new MessageEmbed()
    .setDescription(PunishmentManager.getAllPunishmentsDisplay(settings.punishments))
-   .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+   .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
    , disableMentions: "all"})
 } 
 else if(option === "remove")
@@ -118,7 +118,7 @@ else if(option === "remove")
    message.channel.send({ content: `${this.client.config.emojis.success} Users who reach \`${numstrikes}\` they will no longer be punished.`,
    embed: new MessageEmbed()
   .setDescription(PunishmentManager.getAllPunishmentsDisplay(settings.punishments))
-  .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||""),
+  .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||""),
   disableMentions: "all"})
 }
   });

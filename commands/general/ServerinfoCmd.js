@@ -62,7 +62,7 @@ class ServerinfoCmd extends Command {
   const embed = new MessageEmbed()
   .setThumbnail(message.guild.iconURL({ format: 'png', dynamic: true, size: 1024 }))
   .setDescription(str)
-  .setColor(message.guild.owner.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+  .setColor(message.guild.owner.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
   if(message.guild.splashURL()) embed.setImage(message.guild.splashURL({ format: 'png', size: 1024 }));
   message.channel.send({content: `**${message.guild.name}** server information:`, embed: embed, disableMentions: "all"});
 }

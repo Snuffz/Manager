@@ -81,7 +81,7 @@ class UserinfoCmd extends Command {
     const embed = new MessageEmbed()
     .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
     .setDescription(str)
-    .setColor(member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position+b.position).map(a =>a.color)[0]||"")
+    .setColor(message.member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
     
 message.channel.send({content: `${member.user.bot?bot_emoji:""} **${member.user.username}** #${member.user.discriminator} member information:`, embed: embed, disableMentions: "all"})
     
