@@ -52,10 +52,8 @@ class VoicemoveCmd extends Command {
 
 try
 {
-  vc.join()
-  .then(() => {
-    reply("\ud83d\udd03 I entered the voice channel, move me to move all users connected to it.")
-  });
+  vc.join();
+    reply("\ud83d\udd03 I entered the voice channel, move me to move all users connected to it.");
 }
 catch(e)
 {
