@@ -27,7 +27,9 @@ module.exports.checkSlowmode = (client) =>
     client.channels.cache.filter(c => c.guild && c.guild.settings!=undefined && c.guild.settings.slowmodes.filter(s => s.time <= Date.now()).length > 0).forEach((channel) => {
       setTimeout(() => {
         this.clearSlowmode(channel);
-        channel.setRateLimitPerUser(0, "Temporary Slowmode Completed").catch(()=>{});
+        try{
+        channel.setRateLimitPerUser(0, "Temporary Slowmode Completed")
+        } catch(e) {}
       }, 1000)
     })
 }
