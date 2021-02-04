@@ -25,7 +25,7 @@ module.exports.clearBan = (guild, userId) =>
 module.exports.checkUnbans = (client) => 
 {
     const logHandler = require("../../handlers/serverLogger.js");
-    client.guilds.cache.filter(g => g.settings && g.settings.tempbans.filter(b => b.time <= Date.now()).length > 0).forEach((g) => {
+    client.guilds.cache.filter(g => g.settings && g.settings.tempbans && g.settings.tempbans.filter(b => b.time <= Date.now()).length > 0).forEach((g) => {
         g.settings.tempbans.filter(b => b.time <= Date.now()).forEach((bans) => {
             setInterval(() => {
         const guild = client.guilds.cache.get(bans.guildID);
