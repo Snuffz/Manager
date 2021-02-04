@@ -46,7 +46,7 @@ module.exports.checkUnmutes = (client) =>
             m.roles.remove(role.id, "Temporary Mute Completed")
             .then((member) => {
                 if (guild.channels.cache.get(guild.settings.modLogsChannel)) {
-                    const Logger = new logHandler({ client: client, case: "muteRemove", guild: guild.id, member: member, moderator: client.user, reason: "Temporary Mute Completed" });
+                    const Logger = new logHandler({ client: client, case: "muteRemove", guild: guild.id, member: member.user, moderator: client.user, reason: "Temporary Mute Completed" });
                     Logger.send().then(() => Logger.kill());
                   } 
             })
