@@ -24,7 +24,7 @@ module.exports.clearSlowmode = (channel) =>
 
 module.exports.checkSlowmode = (client) =>
 {
-    client.channels.cache.filter(c => c.guild && c.guild.settings!=undefined && c.guild.settings.slowmodes.filter(s => s.time <= Date.now()).length > 0).forEach((channel) => {
+    client.channels.cache.filter(c => c.guild && c.guild.settings && c.guild.settings.slowmodes && c.guild.settings.slowmodes.filter(s => s.time <= Date.now()).length > 0).forEach((channel) => {
       setTimeout(() => {
         this.clearSlowmode(channel);
         try{
