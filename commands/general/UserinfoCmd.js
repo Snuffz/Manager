@@ -33,7 +33,7 @@ class UserinfoCmd extends Command {
 
       if(found.size == 0)
        {
-      reply(`${this.client.config.emojis.error} I could not find the member you are looking for.`);
+     return reply(`${this.client.config.emojis.error} I could not find the member you are looking for.`);
       }
      else if(found.size > 1)
      {
