@@ -37,7 +37,7 @@ module.exports.checkUnmutes = (client) =>
         g.settings.tempmutes.filter(m => m.time <= Date.now()).forEach((mutes) => {
             setTimeout(() => {
         const guild = client.guilds.cache.get(mutes.guildID);
-        const role = guild.roles.cache.get(guild.settings.muteRole) || member.guild.roles.cache.find(r => r.name.toLowerCase() === "muted");
+        const role = guild.roles.cache.get(guild.settings.muteRole) || guild.roles.cache.find(r => r.name.toLowerCase() === "muted");
         if(role){
             this.removeMute(guild, mutes.memberID);
             const m = guild.members.cache.get(mutes.memberID);
