@@ -45,8 +45,11 @@ module.exports.cancelPremium = async (guild) =>
     const index = plans.guilds.findIndex(p => p.guildId === guild.id);
     if(index>=0)
     {  
+    guild.settings.redirectLinks = "off";
+    guild.settings.nsfwDetection = 0;
+    await guild.settings.save();
     plans.guilds.splice(index, 1);
-    plans.save().catch(e => console.error(e));
+    await plans.save().catch(e => console.error(e));
     }
 }
 
