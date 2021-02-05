@@ -61,7 +61,7 @@ ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${For
 
       tc.send({ files: [attachment], 
         content: `\`[${date}]\`
-${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars ${newUser.avatar.startsWith("a_") ? "<:gif:806644461781647382>" : ""}:`,
+${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars ${newUser.avatar && newUser.avatar.startsWith("a_") ? "<:gif:806644461781647382>" : ""}:`,
  disableMentions: "all" }).catch(()=>{})
 
            
