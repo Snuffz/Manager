@@ -20,7 +20,6 @@ module.exports = class {
     if(oldUser.bot) return
     if(newUser.bot) return
     
-
     this.client.guilds.cache.filter(a => a.members.cache.has(newUser.id)).forEach(async g => {
         const settings = await Settings.findOne({ guildID: g.id });
         if(!settings)
