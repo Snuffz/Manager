@@ -41,7 +41,7 @@ ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${For
         }
 
         if(oldUser.avatar !== newUser.avatar) {
-          const tc = this.client.guilds.cache.get(settings.avatarLog);
+          const tc = this.client.channels.cache.get(settings.avatarLog);
           if(!tc)
           return;
           const imgOld = await oldUser.displayAvatarURL({ format: 'png' })
