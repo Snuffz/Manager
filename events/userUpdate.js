@@ -41,7 +41,7 @@ ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${For
         }
 
         if(oldUser.avatar !== newUser.avatar) {
-          const tc = this.client.guilds.cache.get(settings.avatarLog);
+          const tc = this.client.channels.cache.get(settings.avatarLog);
           if(!tc)
           return;
           const imgOld = await oldUser.displayAvatarURL({ format: 'png' })
@@ -61,7 +61,7 @@ ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${For
 
       tc.send({ files: [attachment], 
         content: `\`[${date}]\`
-${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars ${newUser.avatar && newUser.avatar.startsWith("a_") ? "<:gif:806644461781647382>" : ""}:`,
+${AVATAR} ${FormatUtil.formatFullUser(newUser)} has changed avatars${newUser.avatar && newUser.avatar.startsWith("a_") ? " <:gif:806644461781647382>" : ""}:`,
  disableMentions: "all" }).catch(()=>{})
 
            

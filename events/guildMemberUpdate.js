@@ -50,6 +50,8 @@ ${NICKNAME} ${oldMember.displayName} (${newMember.id}) has changed nicknames to 
         const entry = await oldMember.guild.fetchAuditLogs({
           type: 'MEMBER_ROLE_UPDATE'
         }).then(audit => audit.entries.first());
+        if(!entry.executor)
+        return;
          const { executor, reason } = entry;
           const Logger = new logHandler({ client: this.client, case: "muteAdd", guild: oldMember.guild.id, member: oldMember.user, moderator: executor, reason: reason || '[no reason specified]' });
           Logger.send().then(() => Logger.kill());
@@ -71,6 +73,8 @@ ${ROLE} ${FormatUtil.formatFullUser(newMember.user)} had an added role \`${newRo
       const entry = await oldMember.guild.fetchAuditLogs({
         type: 'MEMBER_ROLE_UPDATE'
       }).then(audit => audit.entries.first());
+      if(!entry.executor)
+        return;
        const { executor, reason } = entry;
         const Logger = new logHandler({ client: this.client, case: "muteRemove", guild: oldMember.guild.id, member: oldMember.user, moderator: executor, reason: reason || '[no reason specified]' });
         Logger.send().then(() => Logger.kill());

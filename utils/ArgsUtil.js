@@ -32,6 +32,13 @@ if(victims[0] && reason[0] && !reason.join(" ").trim().replace(TIME_REGEX, "").s
             reason = new Array();
           }
         }
+        if(!victims[0])
+        {
+          time = undefined;
+          victims = args.concat("").map(a => a.replace(/[^0-9]+/g, ""));
+          victims = victims.slice(0, victims.indexOf(""));
+          reason = args.slice(victims.length, args.length);
+        }
 };
 
 return {
