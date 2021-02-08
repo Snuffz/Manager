@@ -26,7 +26,6 @@ class EvalCmd extends Command {
         message.channel.stopTyping();
         return;
       }
-
       reply(`${this.client.config.emojis.success} Successfully Evaluated:\n\`\`\`js\n${clean}\n\`\`\``);
     } catch (err) {
       reply(`${this.client.config.emojis.error} An error has occurred:\n\`\`\`xl\n${err}\n\`\`\``);
