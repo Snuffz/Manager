@@ -43,20 +43,20 @@ module.exports.parseTime = (timeStr) => {
 
   module.exports.getEmoji = (flags) => {
     const badges = {
-        DISCORD_EMPLOYEE: "<:stafftools:771327236950982696>",
-        HYPESQUAD_EVENTS: "<:hypesquadevents:556682499569221662>",
-        BUGHUNTER_LEVEL_1: "<:bughunter:556682363120254979>",
-        HOUSE_BRAVERY: "<:hypesquad_bravery:556683071529811983>",
-        HOUSE_BRILLIANCE: "<:hypesquad_brilliance:556683174563020810>",
-        HOUSE_BALANCE: "<:hypesquad_balance:556683254586015765>",
-        EARLY_SUPPORTER: "<:earlysupporter:556682087579516968>",
-        BUGHUNTER_LEVEL_2: "<:bughunter_lvl2:771327778791882764>",
-        VERIFIED_DEVELOPER: "<:dev_verificado:769314927105146921>",
+        DISCORD_EMPLOYEE: "<:staff:808285606529859645>",
+        HYPESQUAD_EVENTS: "<:hypesquad_events:808284887890001941>",
+        BUGHUNTER_LEVEL_1: "<:bughunter:808014331370537001>",
+        HOUSE_BRAVERY: "<:bravery:808006870169288784>",
+        HOUSE_BRILLIANCE: "<:brilliance:808014010875904054>",
+        HOUSE_BALANCE: "<:balance:808006728171257897>",
+        EARLY_SUPPORTER: "<:supporter:808284906379673602>",
+        BUGHUNTER_LEVEL_2: "<:bughunter_lvl2:808315193624756244>",
+        VERIFIED_DEVELOPER: "<:verified_dev:808287043046211615>",
         TEAM_USER: "\u2753",
-        PARTNERED_SERVER_OWNER: "<:partner2:767235399943979038>",
-        VERIFIED_BOT: "<:verified_bot:771343145933340672>",
-        EARLY_VERIFIED_BOT_DEVELOPER: "<:dev_verificado:769314927105146921>",
-        SYSTEM: "<:system:771357953894252574>"
+        PARTNERED_SERVER_OWNER: "<:partner:808284928256901131>",
+        VERIFIED_BOT: "<:verified_bot:808317929367928852>",
+        EARLY_VERIFIED_BOT_DEVELOPER: "<:verified_dev:808287043046211615>",
+        SYSTEM: "<:system:808318606398980096>"
         }
         return flags==null?"":flags.toArray().map(e => badges[e]).join("")
   }
