@@ -27,13 +27,12 @@ ${member.roles.cache.size>1 ? `${LINESTART} Roles: ${member.roles.cache.filter(a
     }
   if(!member.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
     const entry = await member.guild.fetchAuditLogs({
-      type: 'MEMBER_KICK'
+      type: 'MEMBER_KICK',
+      limit: 1
     }).then(audit => audit.entries.first())
     if(!entry) 
     return;
-    const { executor, reason, target, createdTimestamp} = entry;
-    if(createdTimestamp !== Date.now())
-    return;
+    const { executor, reason, target } = entry;
     if(member.id !== target.id || executor.id === this.client.user.id)
     return;
   if(member.guild.channels.cache.has(settings.modLogsChannel))
