@@ -69,7 +69,7 @@ function Check(client, user, ban)
   const minutesBanned = settings.tempbans.find(m => m.memberID === user.id)? settings.tempbans.find(m => m.memberID === user.id).time : undefined;
   const str = `${client.config.emojis.success} Moderation Information for ${FormatUtil.formatFullUser(user)}:
 ${client.getEmoji("strike")} Strikes: **${strikes}**
-${client.getEmoji("mute")} Muted: **${message.guild.members.cache.has(user.id) ? (message.guild.members.cache.get(user.id).roles.cache.has(mRole.id) ? "Yes" : "No") : "Not In Server"}**
+${client.getEmoji("mute")} Muted: **${message.guild.members.cache.has(user.id) ? (mRole && message.guild.members.cache.get(user.id).roles.cache.has(mRole.id) ? "Yes" : "No") : "Not In Server"}**
 ${client.getEmoji("tempmute")} Mute Time Remaining: ${message.guild.members.cache.has(user.id) ? (!minutesMuted ? "N/A" : FormatUtil.msToTime(minutesMuted-Date.now())) : "N/A"}
 ${client.getEmoji("ban")} Banned: **${!ban ? "No" : "Yes"}**
 ${client.getEmoji("tempban")} Ban Time Remaining: ${!minutesBanned ? "N/A" : FormatUtil.msToTime(minutesBanned-Date.now())}`;
