@@ -31,7 +31,6 @@ class AvatarlogCmd extends Command {
       }
     else
       {
-
       if (["off","none"].includes(args[0].toLowerCase()))
        {
       return await setLogChannel();
