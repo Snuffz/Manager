@@ -94,7 +94,7 @@ class StrikeCmd extends Command {
     
   })
   });
-  var interval = setInterval(()=>{if(victims.length==victimmsg.length){reply(victimmsg.join("\n")); clearInterval(interval)}},100);
+  var interval = setInterval(()=>{if(victims.length==victimmsg.length&&victimmsg.length>0){reply(victimmsg.join("\n")); clearInterval(interval)}},100);
 }
 };
 
