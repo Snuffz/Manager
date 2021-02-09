@@ -22,6 +22,6 @@ module.exports = class {
         const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
           tc.send(`\`[${date}]\`
 ${STREAM_START} ${FormatUtil.formatFullUser(member.user)} started stream.
-${LINESTART} Channel: **${voiceChannel}** (${voiceChannel.id})`, { disableMentions: "all" }).catch(()=>{});
+${LINESTART} Channel: _${voiceChannel}_`, { disableMentions: "all" }).catch(()=>{});
     }
 }

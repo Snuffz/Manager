@@ -30,12 +30,12 @@ module.exports = class {
     if (oldMember.channel){
      const user = this.client.users.cache.get(oldMember.id);
     tc.send(`\`[${date}]\`
-${LEAVE_VOICE} ${FormatUtil.formatFullUser(user)} left **${oldMember.channel}** (${oldMember.channel.id})`, { disableMentions: "all" }).catch(() => {});
+${LEAVE_VOICE} ${FormatUtil.formatFullUser(user)} left _${oldMember.channel}_`, { disableMentions: "all" }).catch(() => {});
    }else if (newMember.channel)
    {
     const user = this.client.users.cache.get(newMember.id);
     tc.send(`\`[${date}]\`
-${JOIN_VOICE} ${FormatUtil.formatFullUser(user)} joined **${newMember.channel}** (${newMember.channel.id})`, { disableMentions: "all" }).catch(() => {});  
+${JOIN_VOICE} ${FormatUtil.formatFullUser(user)} joined _${newMember.channel}_`, { disableMentions: "all" }).catch(() => {});  
    }   
  }
 } 
