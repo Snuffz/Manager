@@ -83,7 +83,7 @@ class PardonCmd extends Command {
    user.send(`${this.client.config.emojis.success} You have been pardoned \`${strikes}\` strikes in **${message.guild.name}** for: \`${reason}\``).catch(e => {});
       });
     }); 
-    var interval = setInterval(()=>{if(victims.length==victimmsg.length){ reply(victimmsg.join("\n")); clearInterval(interval)}},100);
+    var interval = setInterval(()=>{if(victims.length==victimmsg.length&&victimmsg.length>0){ reply(victimmsg.join("\n")); clearInterval(interval)}},100);
   }
 };
 
