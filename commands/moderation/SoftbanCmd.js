@@ -23,7 +23,6 @@ class SoftbanCmd extends Command {
   let { victims, reason } = message.context,
   victimmsg = [];
 if(!reason) reason = "[no reason specified]";
-
 if(!args[0] || !victims[0]) return reply(`${this.client.config.emojis.error} Please provide at least one user (@mention or ID).`);
 
 await victims.forEach(async e => {
