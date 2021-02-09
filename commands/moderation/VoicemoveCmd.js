@@ -82,6 +82,6 @@ reply(`${this.client.config.emojis.warning} ${message.member} I was too long con
   }
 }, 120000);
   }
-};
+}
 
 module.exports = VoicemoveCmd
