@@ -38,6 +38,7 @@ class UserinfoCmd extends Command {
      else if(found.size > 1)
      {
        message.channel.send(this.client.config.emojis.warning+FormatUtil.listOfUser(found, args.join(" ")), { disableMentions: "all" });
+       return;
      }
      else
       {
