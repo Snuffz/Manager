@@ -9,7 +9,7 @@ return `**${user.username}**#${user.discriminator} (${user.id})`;
 module.exports.listOfText = (list, query) => {
        var out = ` I found more than one text channel with \`${query}\` included:`;
        for(let i=0; i<6 && i<list.size; i++)
-       out+=`\n${list.get(i).name} (${list.get(i).id})`;
+       out+=`\n${list.first(6)[i].name} (${list.first(6)[i].id})`;
 
        if(list.size > 6)
              out+=`\nAnd ${list.size-6} more...`;
@@ -19,7 +19,7 @@ module.exports.listOfText = (list, query) => {
   module.exports.listOfVoice = (list, query) => {
 var out = ` I found more than one voice channel with \`${query}\` included:`;
 for(let i=0; i<6 && i<list.size; i++)
-out+=`\n${list.get(i).name} (${list.get(i).id})`;
+out+=`\n${list.first(6)[i].name} (${list.first(6)[i].id})`;
 
 if(list.size > 6)
       out+=`\nAnd ${list.size-6} more...`;
@@ -29,7 +29,7 @@ if(list.size > 6)
   module.exports.listOfRoles = (list, query) => {
  var out = ` I found more than one role with \`${query}\` included:`;
  for(let i=0; i<6 && i<list.size; i++)
-       out+=`\n${list.get(i).name} (${list.get(i).id})`;
+       out+=`\n${list.first(6)[i].name} (${list.first(6)[i].id})`;
 if(list.size > 6)
 out+=`\nAnd ${list.size-6} more...`;
 return out;
@@ -38,7 +38,7 @@ return out;
   module.exports.listOfUser = (list, query) => {
 var out = ` I found more than one members with \`${query}\` included:`;
 for(let i=0; i<6 && i<list.size; i++)
-out+=`\n**${list.get(i).user.username}**#${list.get(i).user.discriminator} (${list.get(i).id})`;
+out+=`\n**${list.first(6)[i].user.username}**#${list.first(6)[i].user.discriminator} (${list.first(6)[i].id})`;
 if(list.size > 6)
 out+=`\nAnd ${list.size-6} more...`;
 return out;
