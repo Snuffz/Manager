@@ -31,7 +31,7 @@ class ReasonCmd extends Command {
 
      if(!isNaN(args[0])) {
       modlog.messages.fetch({ limit: 100 }).then((c) => {
-        if(guild.cases < args[0] || c.filter(m => m.author.id === this.client.user.id &&
+        if(settings.cases < args[0] || c.filter(m => m.author.id === this.client.user.id &&
           m.content &&
            m.content.substring(0,2) === '`[' &&
            m.content.split(' ')[1]&&
