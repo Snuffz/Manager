@@ -177,7 +177,6 @@ if(guild.settings.tempmutes.some(m => m.memberID === member.id && m.time==null))
       })
       }
     })
-    
   }
 }
 
