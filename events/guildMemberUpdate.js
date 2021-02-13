@@ -35,7 +35,7 @@ ${NICKNAME} ${oldMember.displayName} (${newMember.id}) has changed nicknames to 
   const entry = await oldMember.guild.fetchAuditLogs({
     type: 'MEMBER_ROLE_UPDATE'
   }).then(audit => audit.entries.first());
-  if(!entry.executor)
+  if(!entry || !entry.executor)
   return;
    const { executor } = entry;
    if(executor.id === this.client.user.id)
