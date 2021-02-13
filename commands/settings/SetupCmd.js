@@ -27,7 +27,7 @@ class SetupCmd extends Command {
 \n\`${settings.prefix}setup muterole\` - Set the 'Muted' role
 \`${settings.prefix}setup automod\` - Configure automod on this server`);
     if (args[0].toLowerCase() === "automod") {
-if(settings.firstAutomod != 'off') {
+if(settings.firstAutomod != false) {
   const ms = await reply(`${this.client.config.emojis.warning} This server already has the automod system configured, do you want to change all strikes and maximum mentions?
 \n${CONFIRM} - Continue
 ${CANCEL} - Cancel`);
