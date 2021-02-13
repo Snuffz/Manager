@@ -47,7 +47,6 @@ return {
     reason: reason.join(" "),
     time
 }
-
     } 
     catch(e) { console.log(e) }
 }
