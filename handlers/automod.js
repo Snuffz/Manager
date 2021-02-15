@@ -359,10 +359,9 @@ if (settings.redirectLinks !== 'off' && settings.redirectLinks != null) await re
       if (settings.antiCopy > 0) await antiCopy(client, message);
       if (settings.nsfwDetection > 0) await antiNsfw(client, message);
       }
-
-      runAutomod(client, message, settings)
-      .then(() => {
-        setTimeout(async() => {
+      setTimeout(async() => {
+      await runAutomod(client, message, settings)
+      .then(async () => {
           if(strikes.length > 0 && reasons.length>0)
           {
 
