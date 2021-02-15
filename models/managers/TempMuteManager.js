@@ -34,7 +34,7 @@ module.exports.checkUnmutes = (client) =>
 {
     const logHandler = require("../../handlers/serverLogger.js");
     client.guilds.cache.filter(g => g.settings && g.settings.tempmutes && g.settings.tempmutes.filter(m => m.time!=null && m.time <= Date.now()).length > 0).forEach((g) => {
-        g.settings.tempmutes.filter(m => m.time <= Date.now()).forEach((mutes) => {
+        g.settings.tempmutes.filter(m => m.time!=null && m.time <= Date.now()).forEach((mutes) => {
             setTimeout(() => {
         const guild = client.guilds.cache.get(mutes.guildID);
         const role = guild.roles.cache.get(guild.settings.muteRole) || guild.roles.cache.find(r => r.name.toLowerCase() === "muted");
