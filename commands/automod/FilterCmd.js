@@ -55,6 +55,11 @@ category: name
   }
 });
 } else if(["remove", "delete"].includes(option)) {
+  if(!args[1]) 
+  {
+    reply(`${this.client.config.emojis.error} Provide the filter name.`);
+    return;
+  }
   const name = args[1].toLowerCase();
   if(FilterManager.deleteFilter(message.guild, name)==null)
   {
