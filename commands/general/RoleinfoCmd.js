@@ -57,7 +57,6 @@ class RoleinfoCmd extends Command {
         .setDescription(str)
         .setColor(role.color||"")
         message.channel.send({content: `Role **${role.name}** information:`, embed: embed, disableMentions: "all"})
-        
     }
 }
     
