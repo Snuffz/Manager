@@ -59,7 +59,6 @@ class KickCmd extends Command {
 });
 
  var interval = setInterval(()=>{if(victims.length==victimmsg.length){ reply(victimmsg.join("\n")); clearInterval(interval)}},100);
-
   }
 };
 
