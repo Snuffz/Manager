@@ -105,7 +105,7 @@ function constructMessage(invite, client)
   eb.setThumbnail(g.iconURL({format:'png', dynamic: true}));
   eb.setDescription(`${LINESTART} ID: **${g.id}**
 ${LINESTART} Creation: **${g.createdAt.toUTCString()}**
-${LINESTART} Members: **${g.memberCount}**`)
+${LINESTART} Members: **${invite.memberCount}**`)
 eb.setImage(g.splashURL() == null ? null : g.splashURL({ format: 'png', size: 1024, dynamic: true }));
 eb.addField("Information About Invite", `${LINESTART} Invite: **${invite.code}**
 ${LINESTART} Channel: **${invite.channel.type === "text" ? "#" : ""}${invite.channel.name}** (${invite.channel.id})
