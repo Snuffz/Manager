@@ -56,7 +56,7 @@ class KickCmd extends Command {
     console.error(e);
     victimmsg.push(`${this.client.config.emojis.error} Failed to kick ${FormatUtil.formatUser(user)}`)
 })
-})
+});
 
  var interval = setInterval(()=>{if(victims.length==victimmsg.length){ reply(victimmsg.join("\n")); clearInterval(interval)}},100);
   }
