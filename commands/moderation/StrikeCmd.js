@@ -5,6 +5,8 @@ Settings = require("../../models/settings.js"),
 warnReceiver = require("../../handlers/warnReceive.js"),
 FormatUtil = require("../../utils/FormatUtil");
 
+const DISCORD_ID = new RegExp("[0-9]{17,20}");
+
 class StrikeCmd extends Command {
   constructor (client) {
     super(client, {
@@ -27,7 +29,7 @@ class StrikeCmd extends Command {
 
     if(!args[0] || !victims[0]) return reply(`${this.client.config.emojis.error} Please provide at least one user (@mention or ID).`);
 
-  if(!(await isUser(this.client, args[0])))
+  if(!args[0].match(DISCORD_ID))
   {
     numstrikes = parseInt(args[0]);
     victims.shift();
@@ -98,14 +100,4 @@ class StrikeCmd extends Command {
 }
 };
 
-module.exports = StrikeCmd;
-
-async function isUser(client, id) {
-  if(isNaN(id)) return false;
-  try{
-    await client.users.fetch(id);
-    return true;
-  } catch (e) {
-    return false
-  }
-}
+module.exports = StrikeCmd
