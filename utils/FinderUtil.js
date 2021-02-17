@@ -54,7 +54,7 @@ module.exports.findMembers = (query, guild) =>
     
     if(userMention)
     {
-        const member = guild.members.cache.get(userMention[0]);
+        const member = guild.members.cache.get(userMention[0].replace(/[<@!>]/g, ""));
         if(member!=undefined)
                return Collections.set(member.id, member);
     }
@@ -158,7 +158,7 @@ const roleMention = query.match(ROLE_MENTION);
 
 if(roleMention)
 {
-    const role = guild.roles.cache.get(roleMention[0]);
+    const role = guild.roles.cache.find(r => r.toString() === roleMention[0]);
     if(role!=undefined) 
           return Collections.set(role.id, role);
 }
