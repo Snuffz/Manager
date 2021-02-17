@@ -158,7 +158,7 @@ const roleMention = query.match(ROLE_MENTION);
 
 if(roleMention)
 {
-    const role = guild.roles.cache.get(roleMention[1]);
+    const role = guild.roles.cache.get(roleMention[0]);
     if(role!=undefined) 
           return Collections.set(role.id, role);
 }
