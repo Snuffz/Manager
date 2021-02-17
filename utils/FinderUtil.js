@@ -54,7 +54,7 @@ module.exports.findMembers = (query, guild) =>
     
     if(userMention)
     {
-        const member = guild.members.cache.get(userMention[1]);
+        const member = guild.members.cache.get(userMention[0]);
         if(member!=undefined)
                return Collections.set(member.id, member);
     }
