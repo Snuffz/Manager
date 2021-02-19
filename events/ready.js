@@ -11,9 +11,9 @@ module.exports = class {
 
   async run () {
     this.client.user.setActivity(`Use ${this.client.config.prefix}help`);
-    setInterval(() => {
-      postStats(this.client);
-    }, 3e5);
+    //setInterval(() => {
+      //postStats(this.client);
+    //}, 3e5);
     setInterval(async() => {
       await PremiumManager.checkExpirations(this.client);
       TempMuteManager.checkUnmutes(this.client);
