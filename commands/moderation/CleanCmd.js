@@ -17,7 +17,7 @@ class CleanCmd extends Command {
 
   async run (message, args, reply) {
     const mguild = await Settings.findOne({ guildID: message.guild.id });
-    var someArguments =
+    const someArguments =
      "`<number>` - Delete a number from 2 to 1000 messages on the channel (default 100)\n"
     + "`@user` or `userID` - Delete all messages sent by a user\n"
     + '`"quote"` - Delete messages that contain such text\n'
@@ -33,17 +33,15 @@ var limit = args[0]
 if(isNaN(args[0]))
 {
     if(!["pinned", "bots", "attachments", "embeds", "links", "pinned"].includes(args[0].toLowerCase())&&
-    args[0].startsWith('"') && args[0].endsWith('"')&&
+    !(args[0].startsWith('"') && args[0].endsWith('"'))&&
     message.mentions.users.size === 0&&
-    args[0].startsWith("/") && args[0].endsWith("/")) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments);
+    !(args[0].startsWith("/") && args[0].endsWith("/"))) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments);
 };
 
- 
-
-if(isNaN(args[0]) || (await isUser(this.client, args[0]))) {
+if(isNaN(args[0]) || args[0].match(new RegExp("[0-9]{17,18}"))) {
     limit = 100
    }
-   if (!(await isUser(this.client, args[0])) && limit > 1000 || limit < 2) return reply(`**${this.client.config.emojis.error} The maximum number of messages that can be deleted is 1000 and the minimum is 2:**\n` + someArguments)
+   if (!args[0].match(new RegExp("[0-9]{17,18}")) && limit > 1000 || limit < 2) return reply(`**${this.client.config.emojis.error} The maximum number of messages that can be deleted is 1000 and the minimum is 2:**\n` + someArguments)
 
 lots_of_messages_getter(message.channel, limit, this.client);
 
@@ -74,7 +72,7 @@ async function lots_of_messages_getter(channel, limit, client) {
     if (sum_messages.length > limit) sum_messages.length = limit
 
     var toBeFiltered = sum_messages
-    if (!isNaN(args[0]) && !(await isUser(client, args[0])) && !args[1] || !isNaN(args[0]) && args[1] && !["pinned", "bots", "attachments", "embeds", "links", "pinned"].includes(args[1]) && !args[1].startsWith("<@")  && !args[1].endsWith(">") && !args[1].startsWith('"') && !args[1].endsWith('"') && !args[1].startsWith("/") && !args[1].endsWith("/") && !(await isUser(client, args[1]))) {
+    if (!isNaN(args[0]) && !args[0].match(new RegExp("[0-9]{17,18}")) && !args[1] || !isNaN(args[0]) && args[1] && !["pinned", "bots", "attachments", "embeds", "links", "pinned"].includes(args[1]) && !(args[1].startsWith("<@")  && args[1].endsWith(">")) && !(args[1].startsWith('"') && args[1].endsWith('"')) && !(args[1].startsWith("/") && args[1].endsWith("/")) && !args[1].match(new RegExp("[0-9]{17,18}"))) {
         params = params + "all "
     }
     var mentionIndex = 0
@@ -130,7 +128,7 @@ async function lots_of_messages_getter(channel, limit, client) {
     }
     })
 
-    args.forEach(async arg => {
+    args.forEach(arg => {
         if(arg.startsWith('/') && arg.endsWith('/')) {
             const regex = new RegExp(arg.replace('/', '').replace('/', ''), 'mi')
             toBeFiltered = toBeFiltered.filter(msg => regex.test(msg.content));
@@ -148,7 +146,7 @@ async function lots_of_messages_getter(channel, limit, client) {
         toBeFiltered = toBeFiltered.filter(msg => msg.pinned);
     }
 var str = "";
-if(toBeFiltered.length <= 0)
+if(toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length <= 0)
 str+=`${client.config.emojis.warn} There are no messages for me to clean.`;
 else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.length}** messages.`;
 
@@ -220,14 +218,3 @@ else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.length}** me
 
 }
 module.exports = CleanCmd;
-
-async function isUser(client, id){
-if(isNaN(id)) return false;
-
-try{
-    await client.users.fetch(id);
-    return true
-} catch(e) {
-    return false
-};
-}
