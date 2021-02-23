@@ -37,7 +37,6 @@ if(isNaN(args[0]))
     message.mentions.users.size === 0&&
     !(args[0].startsWith("/") && args[0].endsWith("/"))) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments);
 };
-
 if(isNaN(args[0]) || args[0].match(new RegExp("[0-9]{17,18}"))) {
     limit = 100
    }
