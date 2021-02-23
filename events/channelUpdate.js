@@ -23,6 +23,6 @@ module.exports = class {
      return;
     const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
    tc.send(`\`[${date}]\`
-${PAINT} Channel ${newChannel.type=="text" ? "#" : ""}${newChannel.name} (${newChannel.id}) was updated to ${oldChannel.type=="text" ? "#" : ""}${oldChannel.name}`, { disableMentions: "all" }).catch(()=>{}); 
+${PAINT} Channel ${oldChannel.type=="text" ? "#" : ""}${oldChannel.name} (${oldChannel.id}) was updated to ${newChannel.type=="text" ? "#" : ""}${newChannel.name}`, { disableMentions: "all" }).catch(()=>{}); 
 }
 }
