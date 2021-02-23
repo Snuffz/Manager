@@ -46,7 +46,7 @@ class KickCmd extends Command {
 
   user.member.kick(`${message.author.tag}: ${reason}`)
 .then(async () => {
-    if(message.guild.channels.cache.has(message.guild.settings.modLogChannel)){
+    if(message.guild.channels.cache.has(message.guild.settings.modLogsChannel)){
         const Logger = new logHandler({ client: this.client, case: "kickAdd", guild: message.guild.id, member: user, moderator: message.author, reason: reason });
         Logger.send().then(t => Logger.kill());
     };
