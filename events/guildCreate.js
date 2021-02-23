@@ -13,6 +13,8 @@ module.exports = class {
   }
 
   async run (guild) {
+    if(!guild.name)
+    return;
       const settings = await Settings.findOne({ guildID: guild.id });
    if (!settings) 
    return;
