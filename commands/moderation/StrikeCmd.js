@@ -73,7 +73,6 @@ class StrikeCmd extends Command {
         });
        
         await newUser.save().catch(e => this.client.logger.log(e, "error"));
-        
         await warnReceiver.emit(this.client, user.member, message.author, message.guild, numstrikes, reason, `${this.client.config.emojis.warning} You have received \`${numstrikes}\` strikes in **${message.guild.name}** for: \`${reason}\``);
         victimmsg.push(`${this.client.config.emojis.success} ${mention} has been gave \`${numstrikes}\` strikes.`);
         if(message.guild.members.cache.has(e)) 
