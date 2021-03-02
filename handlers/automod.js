@@ -39,7 +39,7 @@ class Automod {
       }
 
       const antiSpam = async (client, message) => {
-        let quantidade = message.guild.settings.antiSpam
+        const amount = message.guild.settings.antiSpam
 
         if (messageLog.length > 50) {
           messageLog.shift();
@@ -60,7 +60,7 @@ class Automod {
 
           givedWarn.push(m.author.id);
 
-          strikes.push(quantidade);
+          strikes.push(amount);
           reasons.push(`Spamming`)
 
 
@@ -81,6 +81,8 @@ class Automod {
 
         if (message.author.bot) return;
         if (message.channel.type !== "text" || !message.member.user || !message.guild || !message.channel.guild) return;
+        if(message.channel.topic!=null && message.channel.topic.includes("{spam}"))
+          return;
 
         if (message.author.id !== client.user.id) {
           const currentTime = Math.floor(Date.now());
@@ -151,7 +153,8 @@ class Automod {
         const inviteCode = inviteUrl.includes('invite/') ? inviteUrl.split('invite/')[1] : inviteUrl.split('/')[1]
         const guildInvites = await message.guild.fetchInvites();
         const args = message.content.trim().split(/ +/g);
-
+        if(message.channel.topic==null || !message.channel.topic.includes("{invite}"))
+        {
         for (const arg of args) {
           if (stat === false) {
             if(linkRegex.exec(arg.toLowerCase()) && inviteCode !== message.guild.vanityURLCode) {
@@ -159,7 +162,7 @@ class Automod {
             }
           }
         }
-
+        }
       };
 
       const maxLines = async (client, message, amount) => {
