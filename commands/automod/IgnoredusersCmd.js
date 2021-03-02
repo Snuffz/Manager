@@ -30,7 +30,7 @@ class IgnoredusersCmd extends Command {
         ebuilder.setTitle("Automod Ignored Users");
         var builder = new String();
         const users = settings.ignoredUsers;
-        message.guild.members.cache.forEach(u => {
+        message.guild.members.cache.filter(m => m.id!==this.client.user.id && !m.user.bot).forEach(u => {
        if(users.includes(u.id))
          builder+=`\n${u.toString()}`;
        else if(!u.roles.highest.comparePositionTo(message.guild.me.roles.highest)>0)
