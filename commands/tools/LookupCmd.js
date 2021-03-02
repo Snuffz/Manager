@@ -46,7 +46,8 @@ const text = `${u.bot ? BOT_EMOJI : ""} **${u.username}**#${u.discriminator} use
 const eb = new MessageEmbed();
 eb.setThumbnail(u.displayAvatarURL({format: 'png', dynamic: true}));
 var str = new String(`${LINESTART} Discord ID: **${u.id}** `);
-str+=OtherUtil.getEmoji(u.flags);
+if(u.flags!=null)
+    u.flags.toArray().forEach(flag => str+=OtherUtil.getEmoji(flag));
 if(u.avatar != null && u.avatar.startsWith("a_"))
             str+="<:nitro:688880424205680644>";
 str+=`\n${LINESTART} Account Creation: **${u.createdAt.toUTCString()}**`;

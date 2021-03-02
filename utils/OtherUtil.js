@@ -41,22 +41,24 @@ module.exports.parseTime = (timeStr) => {
             return duration
   }
 
-  module.exports.getEmoji = (flags) => {
-    const badges = {
-        DISCORD_EMPLOYEE: "<:staff:808285606529859645>",
-        HYPESQUAD_EVENTS: "<:hypesquad_events:808284887890001941>",
-        BUGHUNTER_LEVEL_1: "<:bughunter:808014331370537001>",
-        HOUSE_BRAVERY: "<:bravery:808006870169288784>",
-        HOUSE_BRILLIANCE: "<:brilliance:808014010875904054>",
-        HOUSE_BALANCE: "<:balance:808006728171257897>",
-        EARLY_SUPPORTER: "<:supporter:808284906379673602>",
-        BUGHUNTER_LEVEL_2: "<:bughunter_lvl2:808315193624756244>",
-        VERIFIED_DEVELOPER: "<:verified_dev:808287043046211615>",
-        TEAM_USER: "\u2753",
-        PARTNERED_SERVER_OWNER: "<:partner:808284928256901131>",
-        VERIFIED_BOT: "<:verified_bot:808317929367928852>",
-        EARLY_VERIFIED_BOT_DEVELOPER: "<:verified_dev:808287043046211615>",
-        SYSTEM: "<:system:808318606398980096>"
-        }
-        return flags==null?"":flags.toArray().map(e => badges[e]).join("")
+  module.exports.getEmoji = (flag) => 
+  {
+     switch(flag)
+     {
+        case "BUGHUNTER_LEVEL_1":   return "<:bughunter:808014331370537001>";
+        case "BUGHUNTER_LEVEL_2":   return "<:bughunter_lvl2:808315193624756244>";
+        case "EARLY_SUPPORTER":      return "<:supporter:808284906379673602>";
+        case "HYPESQUAD_EVENTS":            return "<:hypesquad_events:808284887890001941>";
+        case "HOUSE_BALANCE":    return "<:balance:808006728171257897>";
+        case "HOUSE_BRAVERY":    return "<:bravery:808006870169288784>";
+        case "HOUSE_BRILLIANCE": return "<:brilliance:808014010875904054>";
+        case "PARTNERED_SERVER_OWNER":              return "<:partner:808284928256901131>";
+        case "DISCORD_EMPLOYEE":                return "<:staff:808285606529859645>";
+        case "SYSTEM":               return "<:system:808318606398980096>";
+        case "TEAM_USER":            return "\u2753";
+        case "VERIFIED_BOT":         return "<:verified_bot:808317929367928852>";
+        case "EARLY_VERIFIED_DEVELOPER": return "";
+        case "VERIFIED_DEVELOPER":   return "<:verified_dev:808287043046211615>";
+        default:                   "\u2753";
+     }
   }

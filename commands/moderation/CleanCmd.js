@@ -148,7 +148,7 @@ async function lots_of_messages_getter(channel, limit, client) {
 var str = "";
 if(toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length <= 0)
 str+=`${client.config.emojis.warning} There are no messages for me to clean.`;
-else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.length}** messages.`;
+else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length}** messages.`;
 
     if(toBeFiltered.length > toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length)
     {
@@ -164,7 +164,7 @@ else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.length}** me
     while (filteredMessages.length > 0) {
         let chunk = filteredMessages.splice(0, 100)
 
-        if (chunk.length >= 2 && chunk.length <= 100) {
+        if (chunk.length >= 1 && chunk.length <= 100) {
             step = step + 1
             message.channel.bulkDelete(chunk).then(async messages => {
                 if(!message.guild.channels.cache.has(mguild.modLogsChannel) || message.channel.id === mguild.modLogsChannel) return;

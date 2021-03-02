@@ -2,7 +2,8 @@ const
 Command = require("../../base/Command.js"),
 FinderUtil = require("../../utils/FinderUtil"),
 FormatUtil = require("../../utils/FormatUtil"),
-Settings = require("../../models/settings.js");
+Settings = require("../../models/settings.js"),
+{ MessageEmbed } = require("discord.js");
 
 class IgnoredusersCmd extends Command {
   constructor (client) {
@@ -22,7 +23,30 @@ class IgnoredusersCmd extends Command {
       guildID: message.guild.id
     }, async (err, settings) => {
       if (err) this.client.logger.log(err);
-      if(!args[0] || !["add", "remove"].includes(args[0].toLowerCase())) 
+      if(!args[0])
+      {
+        const ebuilder = new MessageEmbed();
+        ebuilder.setColor(message.guild.me.roles.cache.filter(r=>r.color>0).sort((a,b) => a.position-b.position).map(r =>r.color).reverse()[0]);
+        ebuilder.setTitle("Automod Ignored Users");
+        var builder = new String();
+        const users = settings.ignoredUsers;
+        message.guild.members.cache.forEach(u => {
+       if(users.includes(u.id))
+         builder+=`\n${u.toString()}`;
+       else if(!u.roles.highest.comparePositionTo(message.guild.me.roles.highest)>0)
+         builder+=`\n${u.toString()} (bigger user)`;
+       else if(u.permissions.toArray().includes("ADMINISTRATOR")
+         || u.permissions.toArray().includes("MANAGE_GUILD")
+         || u.permissions.toArray().includes("BAN_MEMBERS")
+         || u.permissions.toArray().includes("KICK_MEMBERS")
+         || u.permissions.toArray().includes("MANAGE_MESSAGES"))
+            builder+=`\n${u.toString()} (high permission)`
+        });
+        ebuilder.setDescription(builder.length > 2045 ? builder.substr(0, 2045) + "..." : builder.toString());
+        reply("", ebuilder);
+        return;
+      }
+      if(!["add", "remove"].includes(args[0].toLowerCase())) 
       return reply(`${this.client.config.emojis.error} Provide \`add\` or \`remove\` as pre-arguments.`);
       if(!args[1])
       return reply(`${this.client.config.emojis.error} Provide the user name.`);

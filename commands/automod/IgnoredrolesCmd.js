@@ -2,7 +2,8 @@ const
 Command = require("../../base/Command.js"),
 FinderUtil = require("../../utils/FinderUtil"),
 FormatUtil = require("../../utils/FormatUtil"),
-Settings = require("../../models/settings.js");
+Settings = require("../../models/settings.js"),
+{ MessageEmbed } = require("discord.js");
 
 class IgnoredrolesCmd extends Command {
   constructor (client) {
@@ -22,7 +23,30 @@ class IgnoredrolesCmd extends Command {
       guildID: message.guild.id
     }, async (err, settings) => {
       if (err) this.client.logger.log(err);
-      if(!args[0] || !["add", "remove"].includes(args[0].toLowerCase())) 
+     if(!args[0])
+    {
+      const ebuilder = new MessageEmbed();
+      ebuilder.setColor(message.guild.me.roles.cache.filter(r=>r.color>0).sort((a,b) => a.position-b.position).map(r =>r.color).reverse()[0]);
+      ebuilder.setTitle("Automod Ignored Roles");
+      var builder = new String();
+      const roles = settings.ignoredRoles;
+      message.guild.roles.cache.forEach(r => {
+    if(roles.includes(r.id))
+       builder+=`\n${r.toString()}`;
+    else if(!r.comparePositionTo(message.guild.me.roles.highest)>0)
+       builder+=`\n${r.toString()} (bigger role)`;
+    else if(r.permissions.toArray().includes("ADMINISTRATOR")
+    || r.permissions.toArray().includes("MANAGE_GUILD")
+    || r.permissions.toArray().includes("BAN_MEMBERS")
+    || r.permissions.toArray().includes("KICK_MEMBERS")
+    || r.permissions.toArray().includes("MANAGE_MESSAGES"))
+       builder+=`\n${r.toString()} (high permission)`
+      });
+      ebuilder.setDescription(builder.length > 2045 ? builder.substr(0, 2045) + "..." : builder.toString());
+      reply("", ebuilder);
+      return;
+    }
+      if(!["add", "remove"].includes(args[0].toLowerCase())) 
       return reply(`${this.client.config.emojis.error} Provide \`add\` or \`remove\` as pre-arguments.`);
       if(!args[1])
       return reply(`${this.client.config.emojis.error} Provide the role name.`);

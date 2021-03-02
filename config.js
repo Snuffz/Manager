@@ -1,6 +1,6 @@
 const config = {
-  "token":  "NzMyMjM3NjAwNjA1MjA4NjI2.XwxraA.XGuwzBb23nTFRch6eo1CemixYV4",
-  "prefix": "..",
+  "token":  "NzIwMDI0MDI4MzIwMTA0NDkw.Xt_8oQ.hsArrOosDx84LrFFG0MRHbWKhsM",
+  "prefix": "...",
   "dbUrl": "mongodb+srv://snuff:e270906@modbot.rcmli.azure.mongodb.net/modbot?retryWrites=true&w=majority",
   "SERVER_INVITE": 'https://discord.gg/eEQBT4A',
   "OWNER_ID": '602140733985652759',
