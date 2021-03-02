@@ -68,7 +68,7 @@ class IgnoredusersCmd extends Command {
           settings.ignoredUsers.push(member.id);
           await settings.save().catch(e => this.client.logger.log(e, "error"));
         } 
-        return reply(`${this.client.config.emojis.success} ${FormatUtil.formatUser(member.user)} will be ignored in my automod`);
+        return reply(`${this.client.config.emojis.success} ${FormatUtil.formatUser(member.user)} will be ignored in my automod!`);
       } else if (option === "remove") {
         const index = settings.ignoredUsers.findIndex(i => i === user.id);
         if (index < 0) return reply(`${this.client.config.emojis.error} This member is not ignored!`);

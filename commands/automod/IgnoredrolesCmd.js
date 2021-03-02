@@ -64,7 +64,7 @@ class IgnoredrolesCmd extends Command {
           settings.ignoredRoles.push(role.id);
           await settings.save().catch(e => this.client.logger.log(e, "error"));
         } 
-        return message.channel.send(`${this.client.config.emojis.success} The role \`${role.name}\` will be ignored in my automod`, { disableMentions: "all" });
+        return message.channel.send(`${this.client.config.emojis.success} The role \`${role.name}\` will be ignored in my automod!`, { disableMentions: "all" });
       } else if (option === "remove") {
         const index = settings.ignoredRoles.findIndex(i => i === role.id);
         if (index < 0) return message.channel.send(`${this.client.config.emojis.error} The role \`${role.name}\` is not being ignored!`, { disableMentions: "all" });

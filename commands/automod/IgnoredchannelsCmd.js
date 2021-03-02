@@ -52,7 +52,7 @@ class IgnoredchannelsCmd extends Command {
         settings.ignoredChannels.push(channel.id);
         await settings.save().catch(e => this.client.logger.log(e, "error"));
         }
-        return reply(`${this.client.config.emojis.success} The channel ${channel} will be ignored in my automod`);
+        return reply(`${this.client.config.emojis.success} The channel ${channel} will be ignored in my automod!`);
       } else if (option === "remove") {
         const index = settings.ignoredChannels.findIndex(i => i === channel.id);
         if (index < 0) return reply(`${this.client.config.emojis.error} The channel ${channel} is not being ignored!`);
