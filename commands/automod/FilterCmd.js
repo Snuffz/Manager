@@ -67,7 +67,7 @@ category: name
   }
   else 
   {
-    message.channel.send({content: `${this.client.config.emojis.success} All to the words included in the category \`${name}\` have been removed.`, disableMentions: "all"});
+    message.channel.send({content: `${this.client.config.emojis.success} All to the words included in the category \`${args[1].substr(0,1).toUpperCase()+args[1].substr(1).toLowerCase()}\` have been removed.`, disableMentions: "all"});
   }
 } else if(["list", "show"].includes(option)) {
   const field = FilterManager.getFiltersDisplay(message.guild);

@@ -147,7 +147,7 @@ async function lots_of_messages_getter(channel, limit, client) {
     }
 var str = "";
 if(toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length <= 0)
-str+=`${client.config.emojis.warn} There are no messages for me to clean.`;
+str+=`${client.config.emojis.warning} There are no messages for me to clean.`;
 else str+=`${client.config.emojis.success} Cleaned **${toBeFiltered.length}** messages.`;
 
     if(toBeFiltered.length > toBeFiltered.filter(msg => msg.createdTimestamp > Date.now()-1209600000).length)
