@@ -17,7 +17,7 @@ module.exports = class {
        if(!tc)
         return;
        const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
-          logchannel.send(`\`[${date}]\`
+          tc.send(`\`[${date}]\`
 ${ROLE_DELETE} Role ${role.name} (${role.id}) deleted.`, { disableMentions: "all" }).catch(()=>{})
   }
 }
