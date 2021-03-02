@@ -34,6 +34,7 @@ module.exports = class {
        const tc = g.channels.cache.get(settings.serverLog);
        if(!tc)
        return;
+       
       tc.send(`\`[${date}]\`
 ${USERNAME} ${FormatUtil.formatFullUser(oldUser)} has changed usernames to ${FormatUtil.formatUser(newUser)}`, { disableMentions: "all" }).catch(()=>{})
         }
