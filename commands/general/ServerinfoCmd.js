@@ -72,4 +72,4 @@ message.channel.send({ content: title, embed: builder, disableMentions: "all"});
 }
 }
 
-    module.exports = ServerinfoCmd;
+    module.exports = ServerinfoCmd
