@@ -45,12 +45,12 @@ catch(e)
 const text = `${u.bot ? BOT_EMOJI : ""} **${u.username}**#${u.discriminator} user information:`;
 const eb = new MessageEmbed();
 eb.setThumbnail(u.displayAvatarURL({format: 'png', dynamic: true}));
-var str = new String(`${LINESTART} Discord ID: **${u.id}** `);
+var str = new String(`${LINESTART}Discord ID: **${u.id}** `);
 if(u.flags!=null)
     u.flags.toArray().forEach(flag => str+=OtherUtil.getEmoji(flag));
 if(u.avatar != null && u.avatar.startsWith("a_"))
             str+="<:nitro:688880424205680644>";
-str+=`\n${LINESTART} Account Creation: **${u.createdAt.toUTCString()}**`;
+str+=`\n${LINESTART}Account Creation: **${u.createdAt.toUTCString()}**`;
 eb.setDescription(str.toString());
 message.channel.send({ content: text, embed: eb, disableMentions: "all" });
 return true;
@@ -105,13 +105,13 @@ function constructMessage(invite, client)
   const eb = new MessageEmbed();
   eb.setThumbnail(g.iconURL({format:'png', dynamic: true}));
   eb.setDescription(`${LINESTART} ID: **${g.id}**
-${LINESTART} Creation: **${g.createdAt.toUTCString()}**
-${LINESTART} Members: **${invite.memberCount}**`)
+${LINESTART}Creation: **${g.createdAt.toUTCString()}**
+${LINESTART}Members: **${invite.memberCount}**`)
 eb.setImage(g.splashURL() == null ? null : g.splashURL({ format: 'png', size: 1024, dynamic: true }));
-eb.addField("Information About Invite", `${LINESTART} Invite: **${invite.code}**
-${LINESTART} Channel: **${invite.channel.type === "text" ? "#" : ""}${invite.channel.name}** (${invite.channel.id})
-${LINESTART} Inviter: ${invite.inviter == null ? "N/A" : FormatUtil.formatUser(invite.inviter)}
-${g.splashURL() != null ? `${LINESTART} Splash:` : ""}`)
+eb.addField("Information About Invite", `${LINESTART}Invite: **${invite.code}**
+${LINESTART}Channel: **${invite.channel.type === "text" ? "#" : ""}${invite.channel.name}** (${invite.channel.id})
+${LINESTART}Inviter: ${invite.inviter == null ? "N/A" : FormatUtil.formatUser(invite.inviter)}
+${g.splashURL() != null ? `${LINESTART}Splash:` : ""}`)
 message.channel.send({ content: text, embed: eb, disableMentions: "all" })
 }
 }

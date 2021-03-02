@@ -3,7 +3,7 @@ FilterManager = require("../../models/managers/FilterManager"),
 Command = require("../../base/Command.js"),
 { MessageEmbed } = require("discord.js");
 
-const FILTER_TITLE = "\ud83d\udeb7 Filters"; // 🚷
+const FILTER_TITLE = "\uD83D\uDEB7 Filters"; // 🚷
 
 class FilterCmd extends Command {
   constructor (client) {

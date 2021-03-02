@@ -1,13 +1,11 @@
-const { stat } = require("fs");
-
 const Command = require("../../base/Command.js"),
-{ MessageEmbed, Collection } = require('discord.js'),
-Collections = new Collection(),
+{ MessageEmbed } = require('discord.js'),
 FinderUtil = require("../../utils/FinderUtil"),
 FormatUtil = require("../../utils/FormatUtil"),
 OtherUtil = require("../../utils/OtherUtil"),
-bot_emoji = "<:bot:686626014411096186>",
-linestart = "\u25AB"; // ▫
+BOT_EMOJI = "<:bot:686626014411096186>",
+LINESTART = "\u25AB"; // ▫
+
 class UserinfoCmd extends Command {
   constructor (client) {
     super(client, {
@@ -45,31 +43,31 @@ class UserinfoCmd extends Command {
     }
   }
     const user = member.user;
-    let str = new String(`${linestart}Discord ID: **${user.id}** `);
+    let str = new String(`${LINESTART}Discord ID: **${user.id}** `);
     if(user.flags!=null)
        user.flags.toArray().forEach(flag => str+=OtherUtil.getEmoji(flag))
     if(user.avatar != null && user.avatar.startsWith("a_"))
        str+="<:nitro:688880424205680644>";
     if(member.nickname!=null) 
-       str+=`\n${linestart}Nickname: **${member.nickname}**`;
+       str+=`\n${LINESTART}Nickname: **${member.nickname}**`;
     var roles="";
     roles = member.roles.cache.filter(e =>e.id!==message.guild.id).map(r=>`\`${r.name}\``).join(", ");
     if(roles.length==0)
        roles="None";
-    str+=`\n${linestart}Roles: ${roles}`;
-    str+=`\n${linestart}Status: ${statusToEmote(member.presence.status, member.presence.activities)} **${member.presence.status.toUpperCase()}**`;
-    const game = member.presence.activities.length==0 ? null : member.presence.activities[0];
-    if(game!=null)
-       str+=` (${formatGame(game)})`;
-    str+=`\n${linestart}Account Creation: **${member.user.createdAt.toUTCString()}**`;
+    str+=`\n${LINESTART}Roles: ${roles}`;
+    //str+=`\n${LINESTART}Status: ${statusToEmote(member.presence.status, member.presence.activities)} **${member.presence.status.toUpperCase()}**`;
+    //const game = member.presence.activities.length==0 ? null : member.presence.activities[0];
+    //if(game!=null)
+    //   str+=` (${formatGame(game)})`;
+    str+=`\n${LINESTART}Account Creation: **${user.createdAt.toUTCString()}**`;
     var joins = message.guild.members.cache;
     joins = joins.sort((a, b) => a.joinedTimestamp - b.joinedTimestamp);
     let index = joins.array().indexOf(member);
-    str+=`\n${linestart}Guild Join Date: **${member.joinedAt.toUTCString()}** \`(#${(index+1)})\``;
+    str+=`\n${LINESTART}Guild Join Date: **${member.joinedAt.toUTCString()}** \`(#${(index+1)})\``;
     index-=3;
     if(index<0)
       index=0;
-    str+=`\n${linestart}Join Order: `;
+    str+=`\n${LINESTART}Join Order: `;
     if(joins.array()[index] === member)
        str+=`[**${joins.array()[index].user.username}**]()`;
     else 
@@ -84,94 +82,14 @@ class UserinfoCmd extends Command {
              uname=`[**${uname}**]()`;
           str+=` > ${uname}`
        }
-/*
-      
 
-    const ordered = message.guild.members.cache.sort((a, b) => a.joinedTimestamp - b.joinedTimestamp);
-    const index = ordered.keyArray().indexOf(member.id);
-
-
-
-    str+=`\n${linestart} Guild Join Date: **${member.joinedAt.toUTCString()}** \`(#${(index + 1)})\``;
-    let joinOrder;
-    switch (index) {
-      case 0:
-        joinOrder = `**${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username} > ${ordered.array()[index + 3].user.username} > ${ordered.array()[index + 4].user.username}`;
-        break;
-      case 1:
-        joinOrder = `${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username} > ${ordered.array()[index + 3].user.username}`;
-        break;
-      case (message.guild.members.cache.size - 1):
-        joinOrder = `${ordered.array()[index - 4].user.username} > ${ordered.array()[index - 3].user.username} > ${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}**`;
-        break;
-      case (message.guild.members.cache.size - 2):
-        joinOrder = `${ordered.array()[index - 3].user.username} > ${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username}`;
-        break;
-      default:
-        joinOrder = `${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username}`;
-        break;
-    }
-    index-=3;
-    if(index<0)
-       index=0;
-    str+=`\n${linestart} Join Order: `;
-
-    for(let i=index+1;i<index+7;i++)
-    {
-       if(i>=message.guild.members.cache.size)
-         break;
-       const m = ordered.array()[index - i];
-       let uname = m.user.username
-       if(m === member)
-         uname=`[**${uname}**]()`;
-       
-    }*/
-
-    const embed = new MessageEmbed()
-    .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-    .setDescription(str)
-    .setColor(member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
-    
-message.channel.send({content: `${member.user.bot?bot_emoji:""} **${member.user.username}** #${member.user.discriminator} member information:`, embed: embed, disableMentions: "all"})
-
-
-
-
-
-   /* str+=`\n${linestart} Roles: ${member.roles.cache.filter(e =>e.id!==message.guild.id).map(r=>`\`${r.name}\``).join(", ") || "None"}`;
-  
-    const ordered = message.guild.members.cache.sort((a, b) => a.joinedTimestamp - b.joinedTimestamp);
-    const index = ordered.keyArray().indexOf(member.id);
-    let joinOrder;
-    switch (index) {
-      case 0:
-        joinOrder = `**${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username} > ${ordered.array()[index + 3].user.username} > ${ordered.array()[index + 4].user.username}`;
-        break;
-      case 1:
-        joinOrder = `${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username} > ${ordered.array()[index + 3].user.username}`;
-        break;
-      case (message.guild.members.cache.size - 1):
-        joinOrder = `${ordered.array()[index - 4].user.username} > ${ordered.array()[index - 3].user.username} > ${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}**`;
-        break;
-      case (message.guild.members.cache.size - 2):
-        joinOrder = `${ordered.array()[index - 3].user.username} > ${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username}`;
-        break;
-      default:
-        joinOrder = `${ordered.array()[index - 2].user.username} > ${ordered.array()[index - 1].user.username} > **${ordered.array()[index].user.username}** > ${ordered.array()[index + 1].user.username} > ${ordered.array()[index + 2].user.username}`;
-        break;
-    }
-
-    str+=`\n${linestart} Account Creation: **${member.user.createdAt.toUTCString()}**\n${linestart} Guild Join Date: **${member.joinedAt.toUTCString()}** \`(#${(index + 1)})\``;
-
-    str+=`\n${linestart} Join Order: ${joinOrder}`;
-
-    const embed = new MessageEmbed()
-    .setThumbnail(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-    .setDescription(str)
-    .setColor(member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
-    
-message.channel.send({content: `${member.user.bot?bot_emoji:""} **${member.user.username}** #${member.user.discriminator} member information:`, embed: embed, disableMentions: "all"})
-    */
+    message.channel.send({ content: `${user.bot?BOT_EMOJI:""} **${user.username}** #${user.discriminator} member information:`,
+                             embed: new MessageEmbed()
+                            .setDescription(str)
+                            .setThumbnail(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+                            .setColor(member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||""),
+                            disableMentions: "all"
+                          })
 }
 };
 
