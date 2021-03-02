@@ -2,7 +2,7 @@ const config = require("../../config.js");
 const strike = "\ud83d\udea9"; // 🚩
 
 module.exports.MAX_STRIKES = 100;
-module.exports.DEFAULT_SETUP_MESSAGE = `\n${config.emojis.warning} Check the punishments wiki, a perfect strike system for administrators: https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%9A%A9-Strikes#-punishments-system`;
+module.exports.DEFAULT_SETUP_MESSAGE = `\n${config.emojis.warning} Check the punishments wiki, a perfect strike system for administrators: https://github.com/Snuffz/ManagerBot/wiki/Strikes#-punishments-system`;
 
 module.exports.useDefaultSettings = (guild) => 
 {

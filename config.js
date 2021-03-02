@@ -1,6 +1,6 @@
 const config = {
-  "token":  "NzIwMDI0MDI4MzIwMTA0NDkw.Xt_8oQ.hsArrOosDx84LrFFG0MRHbWKhsM",
-  "prefix": "...",
+  "token":  "NzMyMjM3NjAwNjA1MjA4NjI2.XwxraA.XGuwzBb23nTFRch6eo1CemixYV4",
+  "prefix": "..",
   "dbUrl": "mongodb+srv://snuff:e270906@modbot.rcmli.azure.mongodb.net/modbot?retryWrites=true&w=majority",
   "SERVER_INVITE": 'https://discord.gg/eEQBT4A',
   "OWNER_ID": '602140733985652759',
@@ -20,12 +20,12 @@ const config = {
 
   "wiki": {
     "LINK": "https://github.com/Snuffz/ManagerBot",
-    "INFORMATION": "https://github.com/Snuffz/ManagerBot/wiki/%E2%84%B9-Information",
-    "COMMAND_LIST": "https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%93%83-Command-List",
-    "TIMEZONE": "https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%8C%AA-TimeZone",
-    "ARGUMENTS_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%97%A3-Arguments-Guide",
-    "CLEAN_MESSAGES": "https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%9A%A8-Clean-Messages",
-    "STRIKES_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/%F0%9F%9A%A9-Strikes"
+    "INFORMATION": "https://github.com/Snuffz/ManagerBot/wiki/Information",
+    "COMMAND_LIST": "https://github.com/Snuffz/ManagerBot/wiki/Commands",
+    "TIMEZONE": "https://github.com/Snuffz/ManagerBot/wiki/TimeZone",
+    "ARGUMENTS_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/Arguments-Guide",
+    "CLEAN_MESSAGES": "https://github.com/Snuffz/ManagerBot/wiki/Clean-Messages",
+    "STRIKES_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/Strikes"
   },
   "logsChannel": "801960202416554024",
 };

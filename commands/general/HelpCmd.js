@@ -16,11 +16,11 @@ class Help extends Command {
     const embed = new MessageEmbed();
     embed.setColor(message.guild?message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||this.client.config.color:this.client.config.color);
     const links = {
-        automod: "https://github.com/Snuffz/ManagerBot/wiki/📃-Command-List#-automod",
-        general: "https://github.com/Snuffz/ManagerBot/wiki/📃-Command-List#-general",
-        moderation: "https://github.com/Snuffz/ManagerBot/wiki/📃-Command-List#%EF%B8%8F-moderation",
-        settings: "https://github.com/Snuffz/ManagerBot/wiki/📃-Command-List#-settings",
-        tools: "https://github.com/Snuffz/ManagerBot/wiki/📃-Command-List#-tools"
+        automod: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-automod",
+        general: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-general",
+        moderation: "https://github.com/Snuffz/ManagerBot/wiki/Commands#%EF%B8%8F-moderation",
+        settings: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-settings",
+        tools: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-tools"
     }
 if(!args[0] || !["automod", "general", "moderation", "settings", "tools"].includes(args[0].toLowerCase())){
 const categories = [... new Set(this.client.commands.filter(cmd => cmd.help.category !== 'Owner').map(cmd => cmd.help.category))];
