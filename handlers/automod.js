@@ -81,8 +81,6 @@ class Automod {
 
         if (message.author.bot) return;
         if (message.channel.type !== "text" || !message.member.user || !message.guild || !message.channel.guild) return;
-        if(message.channel.topic!=null && message.channel.topic.includes("{spam}"))
-          return;
 
         if (message.author.id !== client.user.id) {
           const currentTime = Math.floor(Date.now());
@@ -153,13 +151,10 @@ class Automod {
         const inviteCode = inviteUrl.includes('invite/') ? inviteUrl.split('invite/')[1] : inviteUrl.split('/')[1]
         const guildInvites = await message.guild.fetchInvites();
         const args = message.content.trim().split(/ +/g);
-        if(message.channel.topic==null || !message.channel.topic.includes("{invite}"))
-        {
         for (const arg of args) {
           if (stat === false) {
             if(linkRegex.exec(arg.toLowerCase()) && inviteCode !== message.guild.vanityURLCode) {
             if (!guildInvites.some(invite => invite.code === inviteCode)) warnTheUser(client, message);
-            }
           }
         }
         }
@@ -351,8 +346,8 @@ class Automod {
 
       async function runAutomod(client, message, settings) {
       if(settings.filterWords.length > 0) await filterWords(client, message)
-      if (settings.antiSpam > 0) await antiSpam(client, message);
-      if (settings.antiInvite > 0) await antiInvite(client, message);
+      if (settings.antiSpam > 0 || (message.channel.topic!=null && message.channel.topic.includes("{spam}"))) await antiSpam(client, message);
+      if (settings.antiInvite > 0 || (message.channel.topic!=null && message.channel.topic.includes("{invite}"))) await antiInvite(client, message);
       if(settings.antiReferral > 0) await antiReferral(client, message)
       if (settings.maxLines > 0) await maxLines(client, message, settings.maxLines);
       if (settings.antiEveryone > 0) await antiEveryone(client, message);
