@@ -89,7 +89,7 @@ return;
    }
    const muteRole = message.guild.roles.cache.get(settings.muteRole) || message.guild.roles.cache.find(r => r.name.toLowerCase()=="muted");
   await message.channel.send({ content: `${this.client.config.emojis.success} Users will now be ${sucessMsg[action.split(" ")[0]]} upon reaching \`${numstrikes}\` strikes.
-${muteRole?"":`${this.client.config.emojis.warning} The 'Muted' role does not exist.`}`,
+${muteRole||action.split(" ")[0]!=="mute"||action.split(" ")[0]!=="tempmute"?"":`${this.client.config.emojis.warning} The 'Muted' role does not exist.`}`,
    embed: new MessageEmbed()
    .setDescription(PunishmentManager.getAllPunishmentsDisplay(settings.punishments))
    .setColor(message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"")
