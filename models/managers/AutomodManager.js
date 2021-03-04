@@ -13,7 +13,7 @@ User Mentions: \`${guild.settings.maxMentions==0 ? "OFF" : guild.settings.maxMen
 Roles Mentions: \`${guild.settings.maxMentionsRoles==0 ? "OFF" : guild.settings.maxMentionsRoles}\`
 Max Lines: \`${guild.settings.maxLines==0 ? "OFF" : guild.settings.maxLines}\`
 \n**__Miscellaneous__**
-Auto AntiRaid: \`${guild.settings.antiRaid || "OFF"}\`
+Auto AntiRaid: \`${guild.settings.antiRaid ? guild.settings.antiRaid.toUpperCase() : "OFF"}\`
 Auto DeHoist: \`${guild.settings.hoistCharacters.length > 0 ? `${guild.settings.hoistCharacters[0]} up` : "OFF"}\`
-Resolve Links: \`${guild.settings.redirectLinks || "OFF"}\``
+Resolve Links: \`${guild.settings.redirectLinks ? guild.settings.redirectLinks.toUpperCase() : "OFF"}\``
 }
