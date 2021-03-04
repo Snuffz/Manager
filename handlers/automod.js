@@ -72,7 +72,6 @@ class Automod {
           return undefined;
         };
 
-
         const warnUser = async (m) => {
           warned.push(m.author.id);
           m.channel.send(`${client.config.emojis.warning} <@${m.author.id}> Please stop spamming.`).then(m => m.delete({ timeout: 2500, reason: "Spam" }));
