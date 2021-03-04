@@ -63,7 +63,6 @@ class Automod {
           strikes.push(amount);
           reasons.push(`Spamming`)
 
-
           m.channel.messages.fetch({ limit: 20 }).then((messages) => {
             const filterBy = m.author ? m.author.id : client.user.id;
             messages = messages.filter(m => m.author.id === filterBy).array().slice(0, 20);
