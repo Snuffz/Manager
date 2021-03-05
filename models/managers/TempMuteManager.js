@@ -50,7 +50,7 @@ module.exports.checkUnmutes = (client) =>
                     Logger.send().then(() => Logger.kill());
                   } 
             })
-            .catch(()=>{})
+            .catch(()=>{});
         }
     }
         }, 1000)
