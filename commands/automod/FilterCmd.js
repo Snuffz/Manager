@@ -36,7 +36,9 @@ const option = args[0].toLowerCase();
       if(words.filter(a => a.endsWith("/") && a.startsWith("/") || a.startsWith('"') && a.endsWith('"')).length==0) return reply(`${this.client.config.emojis.error} You need to put \`"\` or \`/\` at the end of each word!\n\nThe words that have \`"\` at the beginning and at the end will be checked if included in any message.\nThe words you have \`/\` at the beginning and at the end, filtered the messages using regex.`)
    if(message.guild.settings.filterWords.find(w => w.category.toLowerCase() === name.toLowerCase())) return reply(`${this.client.config.emojis.error} There is already a filter with that name!`)
       words = [... new Set(words)];
+      var ws = [], count = 0;
       words.forEach(async word => {
+        count++
    const exists = message.guild.settings.filterWords.find(w => w.word === word);
   if(exists) return;
 const wordAll = word.split(""); wordAll.shift(); wordAll.pop();
@@ -47,13 +49,14 @@ strike: warns,
 category: name
   };
   if(FilterManager.addFilter(message.guild, j)){
-    message.channel.send({content: `${this.client.config.emojis.success} Filter *${name}* (\`${warns} ${this.client.getEmoji("strike")}\`) successfully created with filtered terms:\n${words.join(" ").replace("*", "\\*").replace("`", "\\`")}`, disableMentions: "all"});
+    ws.push(word);
   }
   else 
   {
-    reply(`${this.client.config.emojis.error} Your filter name must contain only letters or numbers.`)
+    reply(`${this.client.config.emojis.error} Your filter name must contain only letters or numbers.`); count=0;
   }
 });
+var interval = setInterval(()=>{if(count==words.length){message.channel.send({content: `${this.client.config.emojis.success} Filter *${name}* (\`${warns} ${this.client.getEmoji("strike")}\`) successfully created with filtered terms:\n${ws.join(" ").replace("*", "\\*").replace("`", "\\`")}`, disableMentions: "all"}); clearInterval(interval)}},100);  
 } else if(["remove", "delete"].includes(option)) {
   if(!args[1]) 
   {
