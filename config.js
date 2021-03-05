@@ -19,7 +19,7 @@ const config = {
   },
 
   "wiki": {
-    "LINK": "https://github.com/Snuffz/ManagerBot",
+    "LINK": "https://github.com/Snuffz/ManagerBot/wiki",
     "INFORMATION": "https://github.com/Snuffz/ManagerBot/wiki/Information",
     "COMMAND_LIST": "https://github.com/Snuffz/ManagerBot/wiki/Commands",
     "TIMEZONE": "https://github.com/Snuffz/ManagerBot/wiki/TimeZone",
