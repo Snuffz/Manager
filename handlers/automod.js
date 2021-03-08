@@ -168,6 +168,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(maxLines.length - message.guild.settings.maxLines);
           reasons.push(`Message contained ${maxLines.length} newlines`);
+          users.push(message.author.id);
         }
       };
 
