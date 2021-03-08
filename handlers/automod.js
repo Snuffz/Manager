@@ -14,6 +14,7 @@ mongoose.connect(databaseUrl, {
 
 var strikes = [];
 var reasons = [];
+var users = [];
 var authors = [];
 var warned = [];
 var givedWarn = [];
@@ -61,7 +62,8 @@ class Automod {
           givedWarn.push(m.author.id);
 
           strikes.push(amount);
-          reasons.push(`Spamming`)
+          reasons.push(`Spamming`);
+          users.push(m.author.id);
 
           m.channel.messages.fetch({ limit: 20 }).then((messages) => {
             const filterBy = m.author ? m.author.id : client.user.id;
@@ -141,6 +143,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(message.guild.settings.antiInvite);
           reasons.push('Advertising');
+          users.push(message.author.id);
         };
 
         const linkRegex = /((discord|invite)\.(gg|io|me|plus|link|io|gg|li)|discordapp\.com\/invite)\/.+/ig;
@@ -175,7 +178,8 @@ class Automod {
           if (!message.channel.permissionsFor(message.member).toArray().includes("MENTION_EVERYONE")) {
             message.delete().catch(e=>e);
         strikes.push(message.guild.settings.antiEveryone);
-        reasons.push(`Attempted @еveryone/here`)
+        reasons.push(`Attempted @еveryone/here`);
+        users.push(message.author.id);
           }
         }
       };
@@ -186,6 +190,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(totalMentions - message.guild.settings.maxMentions);
           reasons.push(`Mentioning ${totalMentions} users`);
+          users.push(message.author.id);
         }
       };
 
@@ -196,6 +201,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(totalMentionsRoles - message.guild.settings.maxMentionsRoles);
           reasons.push(`Mentioning ${totalMentionsRoles} roles`);
+          users.push(message.author.id);
         }
       };
 
@@ -206,6 +212,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(message.guild.settings.antiCopy);
           reasons.push("Posting copypastas");
+          users.push(message.author.id);
         };
 
         const CopyWords = ["╰━▅╮","╰╮","┳━━╯", "╰┳╯","╰┳┳┳╯","▔╰━╯","╱╲╱╲▏", "Λ＿Λ", "( 'ㅅ' )", ">　⌒ヽ", "Λ＿Λ", "ˇωˇ", "/▌", "╚═(███)═╝", "▐▄█▀▒▒▒▒▄▀█▄", "▐▄█▄█▌▄▒▀▒", "▒▀▀▄▄▒▒▒▄▒"];
@@ -226,6 +233,7 @@ class Automod {
           message.delete().catch(e=>e);
           strikes.push(message.guild.settings.antiReferral);
           reasons.push("Posting malicious links");
+          users.push(message.author.id);
         };
 
         const ReferralLinks = ["https://2no.co/","https://blasze.com","https://blasze.tk", "https://gotyouripboi.com","https://iplogger.com","https://iplogger.org","https://iplogger.ru", "https://ps3cfw.com", "https://yip.su", "https://bmwforum.co", "https://bucks.as", "https://cyberh1.xyz", "https://discörd.com", "https://disçordapp.com", "https://fortnight.space", "https://fortnitechat.site", "https://freegiftcards.co", "https://grabify.link", "https://oinmy.site", "https://leancoding.co", "https://minecräft.com", "https://quickmessage.us", "https://särahah.eu", "https://särahah.pl", "https://shört.co", "https://spötify.com", "https://spottyfly.com", "https://starbucks.bio", "https://starbucksisbadforyou.com", "https://starbucksiswrong.com", "https://stopify.co", "https://xda-developers.us", "https://youshouldclick.us", "https://yoütu.be", "https://yoütübe.co", "https://yoütübe.com", "https://youtubeshort.watch", "https://adblade.com", "https://adcash.com", "https://adcell.de", "https://adexchangecloud.com", "https://adf.ly", "https://adfoc.us", "https://adforce.com", "https://bc.vc", "https://bitl.cc", "https://btcclicks.com", "https://ceesty.com", "https://cur.lv", "https://fastclick.com", "https://getcryptotab.com", "https://gmads.net", "https://l2s.pet", "https://linkbucks.com", "https://linkshrink.net", "https://miniurl.pw", "https://nitroclicks.com", "https://ouo.io", "https://pay-ads.com", "https://petty.link", "https://pnd.tl", "https://restorecosm.bid", "https://sh.st", "https://short.es", "https://shorte.st", "https://shrtz.me", "https://udmoney.club", "https://uii.io", "https://ur-l.me", "https://vivads.net", "https://xponsor.com", "https://zeusclicks.com", "https://zipansion.com", "https://black-friday.ga", "https://boost.ink", "https://easycommerce.cf", "https://featu.re", "https://free.gg", "https://justdoit.cards", "https://makeprogress.ga", "https://pointsprizes.com", "https://referralpay.co", "https://selly.gg", "https://shoppy.gg", "https://weeklyjob.online", "https://wn.nr", "https://nakedphotos.club", "https://privatepage.vip", "https://viewc.site", "https://baymack.com", "https://btconline.io", "https://btcpool.io", "https://freebitco.in", "https://minero.cc", "https://outbuck.com", "https://amazingsexdating.com", "https://easter-event.com", "https://ezrobux.gg", "https://fortnite.cards", "https://fortnite.events", "https://fortnite-christmas.com", "fortnite-gifts.com", "https://fortnite-giveaway.com", "https://fortnite-special.com", "https://fortnite-vbuck.com", "https://fortnite-vbucks.de", "https://fortnite-vbucks.net", "https://free-gg.com", "https://free-steam-code.com", "https://giveawaybot.pw", "https://myetherermwallet.com", "https://oprewards.com", "https://rbxfree.com", "https://roblox-christmas.com", "https://robloxsummer.com", "https://steam-event.com", "https://steam-gift-codes.com", "https://steam-money.org", "https://steam-wallet-rewards.com", "https://steampromote.com", "https://steamquests.com", "https://steamreward.com", "https://steamspecial.com", "https://steamsummer.com", "https://whatsappx.com"];
@@ -284,7 +292,8 @@ class Automod {
                 stat = true;
                 message.delete().catch(e=>e);
                 strikes.push(warns);
-                reasons.push(`*${name}* Filter`)
+                reasons.push(`*${name}* Filter`);
+                users.push(message.author.id);
               };
 
               if (stat === false) {
@@ -308,7 +317,8 @@ class Automod {
           state = true;
           message.delete().catch(e=>e);
           strikes.push(message.guild.settings.nsfwDetection);
-          reasons.push("Posting NSFW image")
+          reasons.push("Posting NSFW image");
+          users.push(message.author.id);
         };
 
         if (message.attachments.size > 0) {
@@ -358,7 +368,7 @@ if (settings.redirectLinks !== 'off' && settings.redirectLinks != null) await re
       setTimeout(async() => {
       await runAutomod(client, message, settings)
       .then(async () => {
-          if(strikes.length > 0 && reasons.length>0)
+          if(strikes.length > 0 && reasons.length>0 && users.length>0)
           {
 
             if (message.guild.settings.punishments.length == 0 || message.guild.settings.punishments.length >= 1 &&!message.guild.settings.punishments.some(p => p.nr === u.infractions + strikes.reduce((x, y) => x + y, 0)) && u.infractions + strikes.reduce((x, y) => x + y, 0) < Math.max(...message.guild.settings.punishments.map(a => a.nr))) {
@@ -375,6 +385,7 @@ if (settings.redirectLinks !== 'off' && settings.redirectLinks != null) await re
               warningHandler.emit(client, message.member, client.user, message.guild, strikes.length > 1?u.infractions:`${u.infractions-strikes.reduce((x, y) => x + y, 0)} → ${u.infractions}`, reasons.join(", "), client.config.emojis.warning + ` You have received \`${strikes.reduce((x, y) => x + y, 0)}\` strikes in **${message.guild.name}** for: \`${reasons.join(", ")}\``);
           strikes.length = 0;
           reasons.length = 0;
+          users.splice(users.indexOf(message.author.id), 1);
             }
       })
     });

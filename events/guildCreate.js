@@ -16,7 +16,7 @@ module.exports = class {
   async run (guild) {
     if(!guild.name)
     return;
-    setTimeout(async () => { await leavePointlessGuilds() }, 300000);
+   // setTimeout(async () => { await leavePointlessGuilds() }, 300000);
 const tc = this.client.channels.cache.get(this.client.config.logsChannel);
 if(!tc)
 return;
