@@ -27,7 +27,7 @@ class CleanCmd extends Command {
     + "`links` - Delete messages that contain links (images, embeds and GIF's not included)\n"
     + "`pinned` - Delete messages pinned\n"
     + "Note: *Pinned messages will be ignored*"
-    if(!args[0]) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments)
+    if(!args[0]) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments);
 var limit = args[0];
 
 if(isNaN(args[0]))
