@@ -7,7 +7,7 @@ Settings = require("../models/settings.js"),
 logHandler = require("../handlers/serverLogger.js");
 
 const NICKNAME = "\ud83d\uded1"; // 🛑
-const ROLE = "\ud83d\udca0"; // 💠
+const ROLE = "\ud83c\udfad"; // 🎭
 
 module.exports = class {
   constructor (client) {
