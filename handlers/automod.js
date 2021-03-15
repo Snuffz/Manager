@@ -61,7 +61,7 @@ class Automod {
 
           givedWarn.push(m.author.id);
 
-          strikes.push(amount);
+          strikes.push(message.channel.topic!=null && message.channel.topic.toLowerCase().includes("{spam}") ? 1 : amount);
           reasons.push(`Spamming`);
           users.push(m.author.id);
 
@@ -141,7 +141,7 @@ class Automod {
         const warnTheUser = async () => {
           stat = true;
           message.delete().catch(e=>e);
-          strikes.push(message.guild.settings.antiInvite);
+          strikes.push(message.channel.topic!=null && message.channel.topic.toLowerCase().includes("{invite}") ? 1 : message.guild.settings.antiInvite);
           reasons.push('Advertising');
           users.push(message.author.id);
         };
@@ -355,8 +355,8 @@ class Automod {
 
       async function runAutomod(client, message, settings) {
       if(settings.filterWords.length > 0) await filterWords(client, message)
-      if (settings.antiSpam > 0 || (message.channel.topic!=null && message.channel.topic.includes("{spam}"))) await antiSpam(client, message);
-      if (settings.antiInvite > 0 || (message.channel.topic!=null && message.channel.topic.includes("{invite}"))) await antiInvite(client, message);
+      if (settings.antiSpam > 0 || (message.channel.topic!=null && message.channel.topic.toLowerCase().includes("{spam}"))) await antiSpam(client, message);
+      if (settings.antiInvite > 0 || (message.channel.topic!=null && message.channel.topic.toLowerCase().includes("{invite}"))) await antiInvite(client, message);
       if(settings.antiReferral > 0) await antiReferral(client, message)
       if (settings.maxLines > 0) await maxLines(client, message, settings.maxLines);
       if (settings.antiEveryone > 0) await antiEveryone(client, message);
@@ -369,7 +369,7 @@ if (settings.redirectLinks !== 'off' && settings.redirectLinks != null) await re
       setTimeout(async() => {
       await runAutomod(client, message, settings)
       .then(async () => {
-          if(strikes.length > 0 && reasons.length>0 && users.length>0)
+          if(strikes.length > 0 && reasons.length>0 && users.length>0 && users.includes(message.author.id))
           {
 
             if (message.guild.settings.punishments.length == 0 || message.guild.settings.punishments.length >= 1 &&!message.guild.settings.punishments.some(p => p.nr === u.infractions + strikes.reduce((x, y) => x + y, 0)) && u.infractions + strikes.reduce((x, y) => x + y, 0) < Math.max(...message.guild.settings.punishments.map(a => a.nr))) {

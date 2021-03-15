@@ -91,7 +91,7 @@ async function lots_of_messages_getter(channel, limit, client) {
     
     var idIndex = 0
             var idFilterInput = ''
-            args.filter(a => a.match(new RegExp("[0-9]{17,18}"))).forEach(arg => {      
+            args.filter(a => !isNaN(a) && a.match(new RegExp("[0-9]{17,18}"))).forEach(arg => {      
                         if (idIndex == 0) {
                             idFilterInput += `msg.author.id == ${arg}`;
                             params = params + `${arg} `
@@ -101,7 +101,7 @@ async function lots_of_messages_getter(channel, limit, client) {
                         }
                         idIndex++
             })
-    if(args.some(a => a.match(new RegExp("[0-9]{17,18}")))) await eval(`toBeFiltered = toBeFiltered.filter(msg => ${idFilterInput})`)
+    if(args.some(a => !isNaN(a) && a.match(new RegExp("[0-9]{17,18}")))) await eval(`toBeFiltered = toBeFiltered.filter(msg => ${idFilterInput})`)
     
     if (message.content.toLowerCase().includes("bots")) {
         toBeFiltered = toBeFiltered.filter(msg => msg.author.bot);
