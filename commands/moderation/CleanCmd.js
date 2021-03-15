@@ -28,7 +28,7 @@ class CleanCmd extends Command {
     + "`pinned` - Delete messages pinned\n"
     + "Note: *Pinned messages will be ignored*"
     if(!args[0]) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments)
-var limit = args[0]
+var limit = args[0];
 
 if(isNaN(args[0]))
 {
