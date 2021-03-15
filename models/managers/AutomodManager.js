@@ -13,7 +13,7 @@ User Mentions: \`${guild.settings.maxMentions==0 ? "OFF" : guild.settings.maxMen
 Roles Mentions: \`${guild.settings.maxMentionsRoles==0 ? "OFF" : guild.settings.maxMentionsRoles}\`
 Max Lines: \`${guild.settings.maxLines==0 ? "OFF" : guild.settings.maxLines}\`
 \n**__Miscellaneous__**
-Auto AntiRaid: \`${guild.settings.antiRaid ? guild.settings.antiRaid.toUpperCase() : "OFF"}\`
+Auto AntiRaid: \`${guild.settings.useAutoRaidMode ? `\`${guild.settings.raidmodeNumber}\` joins/\`${guild.settings.raidmodeTime}\`s` : "Disabled"}\`
 Auto DeHoist: \`${guild.settings.hoistCharacters.length > 0 ? `${guild.settings.hoistCharacters[0]} up` : "OFF"}\`
 Resolve Links: \`${guild.settings.redirectLinks ? guild.settings.redirectLinks.toUpperCase() : "OFF"}\``
 }
@@ -52,7 +52,7 @@ module.exports.disableRaidMode = async (guild, moderator, reason) =>
 
 module.exports.setAutoRaidMode = async (guild, number, time) => 
 {
-guild.settings.useAutoRaidMode = true;
+guild.settings.useAutoRaidMode = number>0 && time>0 ? true : false;
 guild.settings.raidmodeNumber = number;
 guild.settings.raidmodeTime = time;
 await guild.settings.save().catch(e => guild.client.logger.log(e, "error"));
