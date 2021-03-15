@@ -57,7 +57,7 @@ class Logger {
     const logChannel = this.options.client.channels.cache.get(guildSettings.modLogsChannel);
 if(!logChannel) return;
     logChannel.send(toSend, { disableMentions: "all" });
-       guildSettings.save();
+      await guildSettings.save();
   }
   kill() {
     this.options = {};

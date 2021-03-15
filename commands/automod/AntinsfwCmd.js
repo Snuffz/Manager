@@ -12,7 +12,7 @@ class AntiNSFWCmd extends Command {
       category: "Automod",
       usage: "<strikes>",
       guildOnly: true,
-      botPermissions: ['anti-nsfw', 'antiporn'],
+      aliases: ['anti-nsfw', 'antiporn'],
       userPermissions: ['MANAGE_GUILD']
     });
   }

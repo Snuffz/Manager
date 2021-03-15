@@ -39,7 +39,8 @@ module.exports = class {
         messageLog: "off",
         avatarLog: "off",
         voiceLog: "off",
-        antiRaid: "off",
+        isInRaidMode: false,
+        useAutoRaidMode: false,
         antiCopy: 0,
         antiReferral: 0,
         maxMentionsRoles: 0,
@@ -49,7 +50,9 @@ module.exports = class {
         filterWords: [],
         tempmutes: [],
         tempbans: [],
-        slowmodes: []
+        slowmodes: [],
+        raidmodeNumber: 0,
+        lastVerification: message.guild.verificationLevel
             });
       await newSettings.save().catch(e => this.client.logger.log(e, "error"));
       return undefined;

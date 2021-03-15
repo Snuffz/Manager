@@ -26,7 +26,10 @@ const settingSchema = mongoose.Schema({
   messageLog: String,
   avatarLog: String,
   voiceLog: String,
-  antiRaid: String,
+  isInRaidMode: Boolean,
+  useAutoRaidMode: Boolean,
+  raidmodeNumber: Number,
+  raidmodeTime: Number,
   antiCopy: Number,
   antiReferral: Number,
   maxMentionsRoles: Number,
@@ -36,7 +39,8 @@ const settingSchema = mongoose.Schema({
   filterWords: Array,
   tempmutes: Array,
   tempbans: Array,
-  slowmodes: Array
+  slowmodes: Array,
+  lastVerification: String
 });
 
 module.exports = mongoose.model("settings", settingSchema);
