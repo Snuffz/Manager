@@ -28,7 +28,7 @@ const eb = new MessageEmbed()
 .setFooter((await PremiumManager.getFooterString(message.guild)))
 .setTimestamp((await PremiumManager.getTimestamp(message.guild)));
 
-if([... new Set(guild.settings.filterWords.map(obj => obj.category))].length>0)
+if([... new Set(message.guild.settings.filterWords.map(obj => obj.category))].length>0)
   eb.addField("\ud83d\udeb7 Filters", FilterManager.getFiltersDisplay(message.guild), true);
 
 message.channel.send({ content: `Settings for **${message.guild.name}**:`,
