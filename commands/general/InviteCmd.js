@@ -11,8 +11,8 @@ class Invite extends Command {
 
   async run (message, args, reply) {
 reply(`**Manager** moderation bot.
-- Invite Link: ${this.client.config.bot_invite}
-`)
+- Invite Link: <${this.client.config.bot_invite}>
+`);
   }
 }
 

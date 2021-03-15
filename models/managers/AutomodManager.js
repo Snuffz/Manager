@@ -17,3 +17,43 @@ Auto AntiRaid: \`${guild.settings.antiRaid ? guild.settings.antiRaid.toUpperCase
 Auto DeHoist: \`${guild.settings.hoistCharacters.length > 0 ? `${guild.settings.hoistCharacters[0]} up` : "OFF"}\`
 Resolve Links: \`${guild.settings.redirectLinks ? guild.settings.redirectLinks.toUpperCase() : "OFF"}\``
 }
+
+module.exports.enableRaidMode = async (guild, moderator, reason) => 
+{
+  guild.settings.isInRaidMode = true; guild.settings.lastVerification = guild.verificationLevel; await guild.settings.save().then(() => {
+  if(guild.verificationLevel!="HIGH" && guild.verificationLevel!="VERY_HIGH")
+  {
+      try 
+      {
+        guild.setVerificationLevel(3, "Enabling Anti-Raid Mode")
+      } catch(e){}
+  }
+  const logHandler = require("../../handlers/serverLogger");
+  const Logger = new logHandler({ client: guild.client, case: "lockdownOn", guild: guild.id, moderator: moderator, reason: reason });
+  Logger.send().then(() => Logger.kill());
+});
+}
+
+module.exports.disableRaidMode = async (guild, moderator, reason) => 
+{
+    const last = guild.settings.lastVerification;
+    guild.settings.isInRaidMode = false; await guild.settings.save();
+    if(guild.verificationLevel!=last)
+    {
+        try 
+        {
+            guild.setVerificationLevel(last, "Disabling Anti-Raid Mode");
+        } catch(e){}
+    }
+    const logHandler = require("../../handlers/serverLogger");
+    const Logger = new logHandler({ client: guild.client, case: "lockdownOff", guild: guild.id, moderator: moderator, reason: reason });
+    Logger.send().then(() => Logger.kill());
+}
+
+module.exports.setAutoRaidMode = async (guild, number, time) => 
+{
+guild.settings.useAutoRaidMode = true;
+guild.settings.raidmodeNumber = number;
+guild.settings.raidmodeTime = time;
+await guild.settings.save().catch(e => guild.client.logger.log(e, "error"));
+}

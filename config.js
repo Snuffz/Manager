@@ -25,7 +25,8 @@ const config = {
     "TIMEZONE": "https://github.com/Snuffz/ManagerBot/wiki/TimeZone",
     "ARGUMENTS_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/Arguments-Guide",
     "CLEAN_MESSAGES": "https://github.com/Snuffz/ManagerBot/wiki/Clean-Messages",
-    "STRIKES_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/Strikes"
+    "STRIKES_GUIDE": "https://github.com/Snuffz/ManagerBot/wiki/Strikes",
+    "RAID_MODE": "https://github.com/Snuffz/ManagerBot/wiki/Anti-Raid"
   },
   "logsChannel": "801960202416554024",
 };

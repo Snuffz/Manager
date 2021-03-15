@@ -90,7 +90,10 @@ class Bot extends Client {
         muteRole: "none",
         avatarLog: "off",
         voiceLog: "off",
-        antiRaid: "off",
+        isInRaidMode: false,
+        useAutoRaidMode: false,
+        raidmodeNumber: 0,
+        raidmodeTime: 0,
         antiCopy: 0,
         antiReferral: 0,
         maxMentionsRoles: 0,
@@ -100,7 +103,8 @@ class Bot extends Client {
         filterWords: [],
         tempmutes: [],
         tempbans: [],
-        slowmodes: []
+        slowmodes: [],
+        lastVerification: this.guilds.cache.get(guildID).verificationLevel
       });
 
       await newSettings.save().catch(e => this.logger.log(e, "error"));
@@ -138,7 +142,7 @@ class Bot extends Client {
             messageLog: obj.messageLog,
             avatarLog: obj.avatarLog,
             voiceLog: obj.voiceLog,
-            antiRaid: obj.antiRaid,
+            isInRaidMode: obj.isInRaidMode,
             antiCopy: obj.antiCopy,
             antiReferral: obj.antiReferral,
             maxMentionsRoles: obj.maxMentionsRoles,
@@ -148,7 +152,11 @@ class Bot extends Client {
             filterWords: obj.filterWords,
             tempmutes: obj.tempmutes,
             tempbans: obj.tempbans,
-            slowmodes: obj.slowmodes
+            slowmodes: obj.slowmodes,
+            useAutoRaidMode: obj.useAutoRaidMode,
+            raidmodeNumber: obj.raidmodeNumber,
+            raidmodeTime: obj.raidmodeTime,
+            lastVerification: obj.lastVerification
           });
           await newSettings.save().catch(e => this.logger.log(e, "error"));
           return;
@@ -171,7 +179,7 @@ class Bot extends Client {
           settingsKit.messageLog = obj.messageLog;
           settingsKit.avatarLog = obj.avatarLog;
           settingsKit.voiceLog = obj.voiceLog;
-          settingsKit.antiRaid = obj.antiRaid;
+          settingsKit.isInRaidMode = obj.isInRaidMode;
           settingsKit.antiCopy = obj.antiCopy;
           settingsKit.antiReferral = obj.antiReferral;
           settingsKit.maxMentionsRoles = obj.maxMentionsRoles;
@@ -181,7 +189,11 @@ class Bot extends Client {
           settingsKit.filterWords = obj.filterWords;
           settingsKit.tempmutes = obj.tempmutes;
           settingsKit.tempbans = obj.tempbans;
-          settingsKit.slowmodes = obj.slowmodes
+          settingsKit.slowmodes = obj.slowmodes;
+          settingsKit.useAutoRaidMode = obj.useAutoRaidMode;
+          settingsKit.raidmodeNumber = obj.raidmodeNumber;
+          settingsKit.raidmodeTime = obj.raidmodeTime;
+          settingsKit.lastVerification = obj.lastVerification
           await settingsKit.save().catch(e => console.log(e));
           return;
         }

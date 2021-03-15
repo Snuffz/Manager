@@ -24,7 +24,7 @@ module.exports = class {
         const settings = await Settings.findOne({ guildID: g.id });
         if(!settings)
         return;
-        const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
+        const date = moment(Date.now()).tz(settings.timezone) ? moment(Date.now()).tz(settings.timezone).format("hh:mm:ss") : moment(Date.now()).tz("America/New_York").format("hh:mm:ss");
         if (oldUser.tag !== newUser.tag) {
           if(oldUser.bot) 
           return;
