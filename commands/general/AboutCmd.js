@@ -33,7 +33,7 @@ ${this.client.channels.cache.filter(a => a.type === 'voice').size} Voice Channel
 `[Invite](${this.client.config.bot_invite})
 [Donate](${this.client.config.donation_link})
 `, true)
-.setColor(message.guild?message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||this.client.config.color:this.client.config.color)
+.setColor(message.guild?message.guild.me.displayColor||this.client.config.color:this.client.config.color)
 .setFooter("Last restart")
 .setTimestamp(Date.now()-this.client.uptime)
 )

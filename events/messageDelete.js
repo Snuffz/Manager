@@ -14,6 +14,8 @@ module.exports = class {
   async run (message) {
     if(!message.author) return;
     if(message.author.bot) return;
+    if(message.content.length==0 && message.attachments.size==0)
+    return;
     const settings = await Settings.findOne({ guildID: message.guild.id });
     const tc = this.client.channels.cache.get(settings.messageLog);
     if(!tc || tc.id === message.channel.id)
