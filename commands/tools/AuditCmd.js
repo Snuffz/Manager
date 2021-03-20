@@ -12,9 +12,9 @@ class AuditCmd extends Command {
   constructor (client) {
     super(client, {
       name: "audit",
-      description: "shows the latest audit logs",
+      description: "fetches recent audit logs",
       category: "Tools",
-      usage: "[number]",
+      usage: "<ALL | FROM | ACTION> [target]",
       guildOnly: true,
       userPermissions: ["VIEW_AUDIT_LOG"],
       botPermissions: ["VIEW_AUDIT_LOG","EMBED_LINKS"],
@@ -107,10 +107,12 @@ action.entries.forEach(ale =>
         sb+=`\n${LINESTART}Target ID: ${ale.target.id}`;
     }
     if(ale.changes)
+    {
     ale.changes.forEach(change => 
       {
         sb+=`\n${LINESTART}${fixCase(change.key)}: ${change.old==null ? "" : `**${typeof change.old=="object" ? JSON.stringify(change.old[0]) : change.old}**`}${change.old==null || change.new==null ? "" : " → "}${change.new==null ? "" : `**${typeof change.new=="object" ? JSON.stringify(change.new[0]) : change.new}**`}`
       });
+    }
       if(ale.reason!=null)
         sb+=`\n${LINESTART}Reason: ${ale.reason}`;
         sb+=`\n${LINESTART}Time: **${ale.createdAt.toUTCString()}**\n\u200B`;
