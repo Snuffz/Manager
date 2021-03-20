@@ -113,7 +113,7 @@ if(message.guild)
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
         if (now < expirationTime) {
           const timeLeft = (expirationTime - now) / 1000;
-          return reply(`${this.client.config.emojis.warning} You should wait ${timeLeft.toFixed()} seconds`);
+          return reply(`${this.client.config.emojis.warning} You should wait ${timeLeft.toFixed()} seconds!`);
         }
         timestamps.set(message.author.id, now);
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);

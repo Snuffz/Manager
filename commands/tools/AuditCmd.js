@@ -106,6 +106,7 @@ action.entries.forEach(ale =>
         default: 
         sb+=`\n${LINESTART}Target ID: ${ale.target.id}`;
     }
+    if(ale.changes)
     ale.changes.forEach(change => 
       {
         sb+=`\n${LINESTART}${fixCase(change.key)}: ${change.old==null ? "" : `**${typeof change.old=="object" ? JSON.stringify(change.old[0]) : change.old}**`}${change.old==null || change.new==null ? "" : " → "}${change.new==null ? "" : `**${typeof change.new=="object" ? JSON.stringify(change.new[0]) : change.new}**`}`
