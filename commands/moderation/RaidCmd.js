@@ -7,7 +7,7 @@ class RaidCmd extends Command {
     super(client, {
       name: "raidmode",
       description: "view, enable, or disable raidmode",
-      category: "Automod",
+      category: "Moderation",
       usage: "[ON|OFF] [reason]",
       guildOnly: true,
       aliases: ["raid","antiraidmode"],
