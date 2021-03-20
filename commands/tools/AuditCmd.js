@@ -65,7 +65,9 @@ switch(args[0].toLowerCase())
       action.entries = action;
       break;
       default: 
-        break;
+      return reply(`${this.client.config.emojis.error} Valid subcommands:\n\n\`${message.guild.settings.prefix}${this.help.name} all\` - shows recent audit log entries
+      \`${message.guild.settings.prefix}${this.help.name} from <user>\` - shows recent entries by a user
+      \`${message.guild.settings.prefix}${this.help.name} action <action>\` - shows recent entries of a certain action`);
 }
 if(action.entries.size==0)
 {
