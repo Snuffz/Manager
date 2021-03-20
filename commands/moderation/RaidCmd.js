@@ -47,4 +47,4 @@ class RaidCmd extends Command {
   }
 }
 
-module.exports = RaidCmd;
+module.exports = RaidCmd
