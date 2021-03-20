@@ -17,12 +17,13 @@ class AuditCmd extends Command {
   constructor (client) {
     super(client, {
       name: "audit",
+      aliases: ["auditlog","auditlogs","audits"],
       description: "fetches recent audit logs",
       category: "Tools",
       usage: "<ALL | FROM | ACTION> [target]",
       guildOnly: true,
       userPermissions: ["VIEW_AUDIT_LOG"],
-      botPermissions: ["VIEW_AUDIT_LOG","EMBED_LINKS"],
+      botPermissions: ["VIEW_AUDIT_LOG","EMBED_LINKS","USE_EXTERNAL_EMOJIS"],
       cooldown: 5,
     });
   }
