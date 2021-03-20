@@ -20,8 +20,8 @@ module.exports = class {
       const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
          tc.send(`\`[${date}]\`
 ${UNBOOST} ${FormatUtil.formatFullUser(member.user)} unboosted the server.
-${LINESTART} Boosters: **${member.guild.premiumSubscriptionCount}**
-${LINESTART} Level: **${member.guild.premiumTier}**`, { disableMentions: "all" }).catch(() => {})
+${LINESTART}Boosters: **${member.guild.premiumSubscriptionCount}**
+${LINESTART}Level: **${member.guild.premiumTier}**`, { disableMentions: "all" }).catch(() => {})
           
     }
 }

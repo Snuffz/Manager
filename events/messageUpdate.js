@@ -40,7 +40,7 @@ module.exports = class {
     const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
     tc.send({ content:`\`[${date}]\`
 ${EDIT} A message by ${FormatUtil.formatFullUser(oldMessage.author)} was edited.
-${LINESTART} Channel: ${newMessage.channel.toString()}`, 
+${LINESTART}Channel: ${newMessage.channel.toString()}`, 
 embed: new Discord.MessageEmbed()
 .setDescription(`[Go to Message](${newMessage.url})`)
 .addField('From:', `${oldMessage.content}

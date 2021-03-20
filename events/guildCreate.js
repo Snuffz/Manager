@@ -24,12 +24,12 @@ const date = moment(Date.now()).tz("America/New_York").format("hh:mm:ss");
     const eb = new MessageEmbed()
       .setThumbnail(guild.iconURL({ format: 'png', dynamic: true, size: 1024 }))
       .setDescription(`
-${LINESTART} ID: **${guild.id}**
-${LINESTART} Owner: ${FormatUtil.formatFullUser(guild.owner.user)}
-${LINESTART} Numbers of Members: **${guild.memberCount}**
-${LINESTART} Create At: **${guild.createdAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now()-guild.createdTimestamp)} ago)
+${LINESTART}ID: **${guild.id}**
+${LINESTART}Owner: ${FormatUtil.formatFullUser(guild.owner.user)}
+${LINESTART}Numbers of Members: **${guild.memberCount}**
+${LINESTART}Create At: **${guild.createdAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now()-guild.createdTimestamp)} ago)
 
-${LINESTART} Number of Servers Currently: **${this.client.guilds.cache.size}**
+${LINESTART}Number of Servers Currently: **${this.client.guilds.cache.size}**
       `)
       .setColor(this.client.config.color)
     tc.send({content:`\`[${date}]\`
