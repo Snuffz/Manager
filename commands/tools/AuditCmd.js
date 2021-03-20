@@ -108,7 +108,6 @@ action.entries.forEach(ale =>
     }
     ale.changes.forEach(change => 
       {
-       if(fixCase(change.key) == "$remove") console.log(change.new[0].values)
         sb+=`\n${LINESTART}${fixCase(change.key)}: ${change.old==null ? "" : `**${typeof change.old=="object" ? JSON.stringify(change.old[0]) : change.old}**`}${change.old==null || change.new==null ? "" : " → "}${change.new==null ? "" : `**${typeof change.new=="object" ? JSON.stringify(change.new[0]) : change.new}**`}`
       });
       if(ale.reason!=null)
