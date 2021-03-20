@@ -21,7 +21,7 @@ module.exports = class {
   const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
    tc.send(`\`[${date}]\`
 ${MORE} Channel ${channel} (${channel.id}) was created.
-**${LINESTART} Type:** ${channel.type}
-${channel.parent ? `**${LINESTART} Parent:** ${channel.parent} (${channel.parent.id})` : ""}`, { disableMentions: "all" }).catch(()=>{});
+**${LINESTART}Type:** ${channel.type}
+${channel.parent ? `**${LINESTART}Parent:** ${channel.parent} (${channel.parent.id})` : ""}`, { disableMentions: "all" }).catch(()=>{});
 }
 }

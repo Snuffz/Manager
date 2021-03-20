@@ -42,19 +42,19 @@ class RoleinfoCmd extends Command {
       }
 
         const list = role.members;
-        let desr = new String(`${LINESTART} ID: **${role.id}**\n`
-        + `${LINESTART} Creation: **${role.createdAt.toUTCString()}**\n`
-        + `${LINESTART} Position: **${role.position}**\n`
-        + `${LINESTART} Color: **${role.hexColor}**\n`
-        + `${LINESTART} Mentionable: **${role.mentionable}**\n`
-        + `${LINESTART} Hoisted: **${role.hoist}**\n`
-        + `${LINESTART} Managed: **${role.managed}**\n`
-        + `${LINESTART} Permissions: `);
+        let desr = new String(`${LINESTART}ID: **${role.id}**\n`
+        + `${LINESTART}Creation: **${role.createdAt.toUTCString()}**\n`
+        + `${LINESTART}Position: **${role.position}**\n`
+        + `${LINESTART}Color: **${role.hexColor}**\n`
+        + `${LINESTART}Mentionable: **${role.mentionable}**\n`
+        + `${LINESTART}Hoisted: **${role.hoist}**\n`
+        + `${LINESTART}Managed: **${role.managed}**\n`
+        + `${LINESTART}Permissions: `);
     if(role.permissions.toArray().length==0)
        desr+="None"
     else
        desr+=role.permissions.toArray().map(perm => `\`${FormatUtil.formatPerms(perm)}\``).join(", ");
-    desr+=`\n${LINESTART} Members: **${list.size}**\n`;
+    desr+=`\n${LINESTART}Members: **${list.size}**\n`;
     if(list.size*24<=2048-desr.length)
        list.forEach(m => desr+=`<@${m.id}> `);
             

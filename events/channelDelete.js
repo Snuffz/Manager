@@ -21,7 +21,7 @@ const tc = this.client.channels.cache.get(settings.serverLog);
   const date = moment(Date.now()).tz(settings.timezone).format("hh:mm:ss");
    tc.send(`\`[${date}]\`
 ${MINUS} Channel ${channel.type=="text" ? "#" : ""}${channel.name} (${channel.id}) was deleted.
-**${LINESTART} Type:** ${channel.type}
-${channel.parent ? `**${LINESTART} Parent:** ${channel.parent} (${channel.parent.id})` : ""}`, { disableMentions: "all" }).catch(()=>{});
+**${LINESTART}Type:** ${channel.type}
+${channel.parent ? `**${LINESTART}Parent:** ${channel.parent} (${channel.parent.id})` : ""}`, { disableMentions: "all" }).catch(()=>{});
 }
 }

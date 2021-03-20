@@ -22,8 +22,8 @@ module.exports = class {
     {
       tc.send(`\`[${date}]\`
 ${LEAVE} ${FormatUtil.formatFullUser(member.user)} left the server.
-${LINESTART} Guild Join Date: **${member.joinedAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now() - member.joinedTimestamp)} ago)
-${member.roles.cache.size>1 ? `${LINESTART} Roles: ${member.roles.cache.filter(a => a.id!==member.guild.id).map(a => `\`${a.name}\``).join(", ")}` : ""}`, { disableMentions: "all" }).catch(() => {});
+${LINESTART}Guild Join Date: **${member.joinedAt.toUTCString()}** (${FormatUtil.msToTimeCompact(Date.now() - member.joinedTimestamp)} ago)
+${member.roles.cache.size>1 ? `${LINESTART}Roles: ${member.roles.cache.filter(a => a.id!==member.guild.id).map(a => `\`${a.name}\``).join(", ")}` : ""}`, { disableMentions: "all" }).catch(() => {});
     }
   if(!member.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
     const entry = await member.guild.fetchAuditLogs({
