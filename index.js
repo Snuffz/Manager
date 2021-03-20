@@ -55,7 +55,7 @@ class Bot extends Client {
       clean: "\uD83D\uDDD1" // 🗑️
     }
     return emoji[action];
-    }
+    };
 
     this.clean = async (client, text) => {
       if (text && text.constructor.name == "Promise") text = await text;
