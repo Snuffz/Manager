@@ -14,7 +14,7 @@ class Help extends Command {
 
   async run (message, args, reply) { 
     const embed = new MessageEmbed();
-    embed.setColor(message.guild?message.guild.me.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||this.client.config.color:this.client.config.color);
+    embed.setColor(message.guild?message.guild.me.displayColor||this.client.config.color:this.client.config.color);
     const links = {
         automod: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-automod",
         general: "https://github.com/Snuffz/ManagerBot/wiki/Commands#-general",

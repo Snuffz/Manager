@@ -36,12 +36,22 @@ return out;
   }
 
   module.exports.listOfUser = (list, query) => {
+var out = ` I found more than one users with \`${query}\` included:`;
+for(let i=0; i<6 && i<list.size; i++)
+out+=`\n**${list.first(6)[i].username}**#${list.first(6)[i].discriminator} (${list.first(6)[i].id})`;
+if(list.size > 6)
+out+=`\nAnd ${list.size-6} more...`;
+return out;
+  }
+
+  module.exports.listOfMember = (list, query) => 
+  {
 var out = ` I found more than one members with \`${query}\` included:`;
 for(let i=0; i<6 && i<list.size; i++)
 out+=`\n**${list.first(6)[i].user.username}**#${list.first(6)[i].user.discriminator} (${list.first(6)[i].id})`;
 if(list.size > 6)
 out+=`\nAnd ${list.size-6} more...`;
-return out;
+return out;  
   }
 
   module.exports.msToTime = (ms, object = false) => {

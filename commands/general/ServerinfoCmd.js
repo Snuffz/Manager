@@ -66,7 +66,7 @@ str += `\n${LINESTART}Splash: `;
 }
 if(guild.iconURL() != null)
    builder.setThumbnail(guild.iconURL({ format: 'png', dynamic: true, size: 1024 }));
-builder.setColor(owner == null ? null : owner.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||"");
+builder.setColor(owner == null ? null : owner.displayColor||"");
 builder.setDescription(str)
 message.channel.send({ content: title, embed: builder, disableMentions: "all"});
 }

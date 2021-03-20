@@ -34,7 +34,7 @@ class UserinfoCmd extends Command {
       }
      else if(found.size > 1)
      {
-       message.channel.send(this.client.config.emojis.warning+FormatUtil.listOfUser(found, args.join(" ")), { disableMentions: "all" });
+       message.channel.send(this.client.config.emojis.warning+FormatUtil.listOfMember(found, args.join(" ")), { disableMentions: "all" });
        return;
      }
      else
@@ -87,7 +87,7 @@ class UserinfoCmd extends Command {
                              embed: new MessageEmbed()
                             .setDescription(str)
                             .setThumbnail(user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-                            .setColor(member.roles.cache.filter(a=>a.color>0).sort((a,b) => a.position-b.position).map(a =>a.color).reverse()[0]||""),
+                            .setColor(member.displayColor||""),
                             disableMentions: "all"
                           })
 }
