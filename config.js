@@ -31,4 +31,4 @@ const config = {
   },
   "logsChannel": "801960202416554024",
 };
-module.exports = config
+module.exports = config;
