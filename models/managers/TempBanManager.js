@@ -29,6 +29,7 @@ module.exports.checkUnbans = (client) =>
         g.settings.tempbans.filter(b => b.time <= Date.now()).forEach((bans) => {
             setInterval(() => {
         const guild = client.guilds.cache.get(bans.guildID);
+        if(guild && guild.members){
             guild.members.unban(bans.memberID, "Temporary Ban Completed")
             .then((member) => {
                 if (guild.channels.cache.has(guild.settings.modLogsChannel)) {
@@ -37,6 +38,7 @@ module.exports.checkUnbans = (client) =>
                   } 
             })
             .catch(()=>{})
+        }
         }, 1000)
         })
     })

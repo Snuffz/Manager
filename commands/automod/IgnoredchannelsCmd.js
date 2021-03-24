@@ -23,7 +23,7 @@ class IgnoredchannelsCmd extends Command {
     if(!args[0])
     {
     const ebuilder = new MessageEmbed();
-    ebuilder.setColor(message.guild.me.roles.cache.filter(r=>r.color>0).sort((a,b) => a.position-b.position).map(r =>r.color).reverse()[0]);
+    ebuilder.setColor(message.guild.me.displayColor||"");
     ebuilder.setTitle("Automod Ignored Channels");
     var builder = new String();
     const channels = settings.ignoredChannels;
