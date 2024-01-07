@@ -32,7 +32,7 @@ var limit = args[0];
 
 if(isNaN(args[0]))
 {
-    if(!["pinned", "bots", "attachments", "embeds", "links", "pinned"].includes(args[0].toLowerCase())&&
+    if(!["pinned", "bots", "attachments", "embeds", "links"].includes(args[0].toLowerCase())&&
     !(args[0].startsWith('"') && args[0].endsWith('"'))&&
     message.mentions.users.size === 0&&
     !(args[0].startsWith("/") && args[0].endsWith("/"))) return reply(`**${this.client.config.emojis.error} There are some arguments that should be used in the command:**\n` + someArguments);
